@@ -8,7 +8,7 @@ public class DistanceTransition : Transition
 
     private void Update()
     {
-        
+        Check();
     }
 
     private void Check()
