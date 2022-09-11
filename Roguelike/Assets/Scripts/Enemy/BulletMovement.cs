@@ -1,12 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BulletMovement : ScriptableObject
+public abstract class BulletMovement : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    public enum CallType
+    {
+        Start,
+        Update
+    }
 
-    public float Speed => _speed;
+    [SerializeField] private CallType _call;
 
-    public abstract void Launch(Bullet bullet, Vector3 targetPosition, float speed);
+    public CallType Call => _call;
+
+    public abstract void Move(Bullet bullet, Vector3 spawnPosition, Vector3 targetPosition, float speed);
 }

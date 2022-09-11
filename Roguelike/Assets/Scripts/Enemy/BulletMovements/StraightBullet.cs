@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "BulletMovement/StraightBullet")]
+//[CreateAssetMenu(menuName = "BulletMovement/StraightBullet")]
 public class StraightBullet : BulletMovement
 {
-    public override void Launch(Bullet bullet, Vector3 targetPosition, float speed)
+    private const float _speedModifier = 2000; 
+
+    public override void Move(Bullet bullet, Vector3 spawnPosition, Vector3 targetPosition, float speed)
     {
+        Vector3 direction = (targetPosition - spawnPosition).normalized;
         Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
-        rigidbody.AddForce(targetPosition.normalized * speed);
+        speed *= _speedModifier;
+
+        rigidbody.useGravity = false;
+        rigidbody.AddForce(direction * speed, ForceMode.Impulse);
     }
 }

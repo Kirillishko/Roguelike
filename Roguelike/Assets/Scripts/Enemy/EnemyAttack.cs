@@ -1,26 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyAttack : ScriptableObject
+public abstract class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] protected int _damage;
-    [SerializeField] protected float _delayBetweenAttacks;
-    protected Transform _attackPosition;
+    [SerializeField] protected int Damage;
+    [SerializeField] private float _delayBetweenAttacks;
+    protected Transform AttackPosition;
+    private float _currentDelay;
 
-    public void Init(Transform attackPosition) => _attackPosition = attackPosition;
+    public void Init(Transform attackPosition)
+    {
+        AttackPosition = attackPosition;
+        _currentDelay = _delayBetweenAttacks;
+    }
 
     public abstract void Attack(Vector3 targetPosition);
 
     public bool AbleToAttack()
     {
-        if (_delayBetweenAttacks <= 0)
+        if (_currentDelay <= 0)
         {
+            _currentDelay = _delayBetweenAttacks;
             return true;
         }
         else
         {
-            _delayBetweenAttacks -= Time.deltaTime;
+            _currentDelay -= Time.deltaTime;
             return false;
         }
     }
