@@ -12,9 +12,10 @@ public class PlayerMover : MonoBehaviour
     private SurfaceSlider _surfaceSlider;
     private Rigidbody _rigidbody;
     private bool _isJumped = false;
-    private float _jumpTime = 17.2f;
-    private const float _MinJumpTime = 10f;
-    private const float _MaxJumpTime = 20f;
+    private float _jumpTime;
+    private float _jumpDeadZone = 0.2f;
+    private const float _minJumpTime = 0.01f;
+    private const float _maxJumpTime = 0.1f;
 
     private void Start()
     {
@@ -24,32 +25,25 @@ public class PlayerMover : MonoBehaviour
 
     private void Update()
     {
-        Vector3 direction = GetDirection();
-        Move(direction);
+        if (TryGetDirection(out var direction))
+            Move(direction);
 
-        if (Input.GetKey(KeyCode.Space) && _isJumped == false)
-        {
-            _jumpTime += Time.deltaTime;
-
-            if (_jumpTime >= _MaxJumpTime)
-            {
-                float jumpForce = Mathf.Lerp(_MinJumpTime, _MaxJumpTime, _jumpTime) * _jumpForce;
-                Jump(jumpForce);
-                _jumpTime = 0;
-            }
-        }
-        else if (_jumpTime != 0 && _isJumped == false)
-        {
-            float jumpForce = Mathf.Lerp(_MinJumpTime, _MaxJumpTime, _jumpTime);
-            jumpForce = Mathf.Max(_MinJumpTime, jumpForce) * _jumpForce;
-            Jump(jumpForce);
-            _jumpTime = 0;
-        }
+        if (TryGetJumpTime(out var jumpTimeInProcent))
+            Jump(jumpTimeInProcent * _jumpForce);
     }
 
-    private Vector3 GetDirection()
+    private void OnCollisionEnter(Collision collision)
     {
-        Vector3 direction = Vector3.zero;
+        if (_isJumped == false)
+            return;
+
+        if (collision.transform.TryGetComponent(out Surface surface))
+            _isJumped = false;
+    }
+
+    private bool TryGetDirection(out Vector3 direction)
+    {
+        direction = Vector3.zero;
 
         if (Input.GetKey(KeyCode.W))
             direction += transform.forward;
@@ -60,7 +54,7 @@ public class PlayerMover : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
             direction -= transform.right;
 
-        return direction;
+        return direction != Vector3.zero;
     }
 
     private void Move(Vector3 direction)
@@ -76,19 +70,35 @@ public class PlayerMover : MonoBehaviour
         _rigidbody.MovePosition(_rigidbody.position + offset);
     }
 
+    private bool TryGetJumpTime(out float jumpTimeInProcent)
+    {
+        jumpTimeInProcent = 0;
+
+        if (Input.GetKey(KeyCode.Space) && _isJumped == false)
+        {
+            _jumpTime += Time.deltaTime;
+
+            if (_jumpTime >= _maxJumpTime)
+            {
+                jumpTimeInProcent = (_jumpTime - _minJumpTime) / ((_maxJumpTime - _minJumpTime) / 100) / 100;
+                _jumpTime = 0;
+                return true;
+            }
+        }
+        else if (_jumpTime != 0 && _isJumped == false)
+        {
+            jumpTimeInProcent = (_jumpTime - _minJumpTime) / ((_maxJumpTime - _minJumpTime) / 100) / 100;
+            jumpTimeInProcent = Mathf.Max(_jumpDeadZone, jumpTimeInProcent);
+            _jumpTime = 0;
+            return true;
+        }
+
+        return false;
+    }
+
     private void Jump(float jumpForce)
     {
         _isJumped = true;
         _rigidbody.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (_isJumped == false)
-            return;
-
-        if (collision.transform.TryGetComponent(out Surface surface))
-            _isJumped = false;
-    }
-
 }
