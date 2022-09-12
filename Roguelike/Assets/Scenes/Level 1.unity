@@ -135,10 +135,11 @@ GameObject:
   - component: {fileID: 262018533}
   - component: {fileID: 262018532}
   - component: {fileID: 262018531}
+  - component: {fileID: 262018538}
   - component: {fileID: 262018535}
   - component: {fileID: 262018536}
   - component: {fileID: 262018537}
-  - component: {fileID: 262018538}
+  - component: {fileID: 262018539}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -252,59 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 2
   _accelerationSpeed: 4
-  _curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 5.8540964
-      outSlope: 5.8540964
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.16450955
-      value: 1.9630548
-      inSlope: 1.9989791
-      outSlope: 1.9989791
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.4711609
-      value: 1.3938675
-      inSlope: 0.050672233
-      outSlope: 0.050672233
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.76981664
-      value: 1.9784809
-      inSlope: -1.1466966
-      outSlope: -1.1466966
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -4.250876
-      outSlope: -4.250876
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _jumpModifier: 1
-  _step: 1
+  _jumpForce: 1000
 --- !u!114 &262018537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,9 +279,21 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
+--- !u!114 &262018539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262018530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be313909019783e4a9e5e19cee85e8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +505,6 @@ GameObject:
   - component: {fileID: 1007048051}
   - component: {fileID: 1007048052}
   - component: {fileID: 1007048054}
-  - component: {fileID: 1007048053}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -701,53 +661,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 1007048051}
   _transitionRange: 5
---- !u!114 &1007048053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007048043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bc6fcd734e786646a800864dbbe5a3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _call: 1
-  _animationY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 2
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -2
-      outSlope: -2
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _step: 0.001
 --- !u!114 &1007048054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,6 +689,7 @@ GameObject:
   - component: {fileID: 1351046869}
   - component: {fileID: 1351046868}
   - component: {fileID: 1351046867}
+  - component: {fileID: 1351046871}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -859,6 +773,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1351046871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351046866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbad86e7bf03d6f4199f2a0181e03a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1586570966
 GameObject:
   m_ObjectHideFlags: 0
