@@ -25,6 +25,7 @@ public class CurveBullet : BulletMovement
     [SerializeField] private float _step;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _height;
+    [SerializeField] private float _speedMultiplier;
     private Camera _camera;
 
     //private void Start()
@@ -140,7 +141,7 @@ public class CurveBullet : BulletMovement
         time = xt / (v0 * Mathf.Cos(angle));
     }
 
-    private IEnumerator Coroutine_Movement(Vector3 direction, Vector3 spawnPosition, float v0, float angle, float time)
+    private IEnumerator Coroutine_Movement(Rigidbody rigidbody, Vector3 direction, Vector3 spawnPosition, float v0, float angle, float time)
     {
         float t = 0;
 
@@ -148,9 +149,9 @@ public class CurveBullet : BulletMovement
         {
             float x = v0 * t * Mathf.Cos(angle);
             float y = v0 * t * Mathf.Sin(angle) - 0.5f * -Physics.gravity.y * Mathf.Pow(t, 2);
-            transform.position = spawnPosition + direction * x + Vector3.up * y;
+            rigidbody.MovePosition(spawnPosition + direction * x + Vector3.up * y);
 
-            t += Time.deltaTime;
+            t += Time.deltaTime * _speedMultiplier;
             yield return null;
         }
     }
@@ -170,14 +171,14 @@ public class CurveBullet : BulletMovement
             float v0;
             float time;
             targetPos.z = 0;
-            //float height = targetPos.y + targetPos.magnitude / 2f;
-            //height = Mathf.Max(0.01f, height);
-            CalculatePathWithHeight(targetPos, _height, out angle, out v0, out time);
+            float height = targetPos.y + targetPos.magnitude / 2f;
+            height = Mathf.Max(0.01f, height);
+            CalculatePathWithHeight(targetPos, height / 2f, out angle, out v0, out time);
             //CalculatePath(targetPos, angle, out v0, out time);
 
             //DrawPath(groundDirection.normalized, v0, angle, time, _step);
             StopAllCoroutines();
-            StartCoroutine(Coroutine_Movement(groundDirection.normalized, spawnPosition, v0, angle, time));
+            StartCoroutine(Coroutine_Movement(bullet.GetComponent<Rigidbody>(), groundDirection.normalized, spawnPosition, v0, angle, time));
         }
     }
 }

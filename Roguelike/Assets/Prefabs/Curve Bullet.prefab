@@ -141,9 +141,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _call: 0
-  _initialVelocity: 0
-  _angle: 0
+  _initialVelocity: 24.7
+  _angle: 36.06
   _line: {fileID: 0}
   _step: 0.001
   _firePoint: {fileID: 0}
-  _height: 25
+  _height: 5
+  _speedMultiplier: 2
