@@ -113,12 +113,11 @@ public class Projectile : MonoBehaviour
         while (t < time)
         {
             float x = v0 * t * Mathf.Cos(angle);
-            float y = v0 * t * Mathf.Sin(angle) - (1f / 2f) * -Physics.gravity.y * Mathf.Pow(t, 2);
+            float y = v0 * t * Mathf.Sin(angle) - 0.5f * -Physics.gravity.y * Mathf.Pow(t, 2);
             transform.position = _firePoint.position + direction * x + Vector3.up * y;
 
             t += Time.deltaTime;
             yield return null;
         }
-
     }
 }
