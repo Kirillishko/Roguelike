@@ -4,11 +4,11 @@ using UnityEngine;
 public class Shoot : EnemyAttack
 {
     [SerializeField] private float _speed;
-    [SerializeField] private Bullet _bulletTemplate;
+    [SerializeField] private Projectile _projectileTemplate;
 
     public override void Attack(Vector3 targetPosition)
     {
-        Bullet newBullet = Instantiate(_bulletTemplate, AttackPosition.position, _bulletTemplate.transform.rotation);
-        newBullet.Init(Damage, _speed, AttackPosition.position, targetPosition);
+        Projectile newProjectile = Instantiate(_projectileTemplate, AttackPosition.position, _projectileTemplate.transform.rotation);
+        newProjectile.Init(Damage, _speed, AttackPosition.position, targetPosition);
     }
 }

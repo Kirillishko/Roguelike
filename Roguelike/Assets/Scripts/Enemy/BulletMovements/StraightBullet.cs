@@ -1,14 +1,14 @@
 using UnityEngine;
 
 //[CreateAssetMenu(menuName = "BulletMovement/StraightBullet")]
-public class StraightBullet : BulletMovement
+public class StraightBullet : ProjectileMovement
 {
     private const float _speedModifier = 2000; 
 
-    public override void Move(Bullet bullet, Vector3 spawnPosition, Vector3 targetPosition, float speed)
+    public override void Move(Projectile projectile, Vector3 spawnPosition, Vector3 targetPosition, float speed)
     {
         Vector3 direction = (targetPosition - spawnPosition).normalized;
-        Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
+        Rigidbody rigidbody = projectile.GetComponent<Rigidbody>();
         speed *= _speedModifier;
 
         rigidbody.useGravity = false;
