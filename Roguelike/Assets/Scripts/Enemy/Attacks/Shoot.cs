@@ -1,14 +1,16 @@
 using UnityEngine;
 
-//[CreateAssetMenu(menuName = "EnemyAttack/Shoot")]
 public class Shoot : EnemyAttack
 {
+    [SerializeField] private ShootLogic _logic;
     [SerializeField] private float _speed;
     [SerializeField] private Bullet _bulletTemplate;
 
-    public override void Attack(Vector3 targetPosition)
+    protected override void Attack(Vector3 targetPosition)
     {
-        Bullet newBullet = Instantiate(_bulletTemplate, AttackPosition.position, _bulletTemplate.transform.rotation);
-        newBullet.Init(Damage, _speed, AttackPosition.position, targetPosition);
+        var position = AttackPosition.position;
+        
+        var newBullet = Instantiate(_bulletTemplate, position, _bulletTemplate.transform.rotation);
+        newBullet.Init(Damage, _speed, position, targetPosition);
     }
 }

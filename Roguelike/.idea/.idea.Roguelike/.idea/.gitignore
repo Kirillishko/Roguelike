@@ -1,9 +1,9 @@
-# Default ignored files
+﻿# Default ignored files
 /shelf/
 /workspace.xml
 # Rider ignored files
-/modules.xml
 /contentModel.xml
+/modules.xml
 /.idea.Roguelike.iml
 /projectSettingsUpdater.xml
 # Editor-based HTTP Client requests

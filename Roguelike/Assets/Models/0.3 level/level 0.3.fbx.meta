@@ -1,0 +1,610 @@
+fileFormatVersion: 2
+guid: 19d8ae9e9b7df004b92846630cba49a5
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      74: -4264317861102202148
+    second: torche_metallic_clean.001|Firebolt.Big.001|Firebolt.Big.001|light rune
+      v1.002|Firebolt.Bi
+  - first:
+      74: 6537499931981310543
+    second: torche_metallic_clean.001|Firebolt.Big|Firebolt.Big|light rune v1|Firebolt.Big|light
+      rune
+  - first:
+      74: -1052500933524300474
+    second: torche_metallic_clean.001|Rune.Default|Rune.Default|pick up rune|Rune.Default|pick
+      up run
+  - first:
+      74: -874637620953460447
+    second: torche_metallic_clean.001|torche_fire_flame|torche_fire_flame|torche_fire_flameAction.001
+  - first:
+      74: 2608555291385726584
+    second: torche_metallic_clean.001|torche_fire_flame|torche_fire_flame|torche_metallic_cleanAction
+  - first:
+      74: -6701163413199124917
+    second: torche_metallic_clean.001|torche_fire_flame|torche_fire_flame|torche_wood_leatherAction|t
+  - first:
+      74: -5653936963242343120
+    second: torche_metallic_clean.001|torche_metallic_clean|torche_metallic_clean|torche_fire_fla
+  - first:
+      74: 7698092680390390812
+    second: torche_metallic_clean.001|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.001
+  - first:
+      74: -1409514113054251441
+    second: torche_metallic_clean.001|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.002
+  - first:
+      74: -1878695386763693779
+    second: torche_metallic_clean.001|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.003
+  - first:
+      74: -4498029936251850288
+    second: torche_metallic_clean.001|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.004
+  - first:
+      74: -3294742969562470808
+    second: torche_metallic_clean.001|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.005
+  - first:
+      74: 1961982372628462980
+    second: torche_metallic_clean.001|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.006
+  - first:
+      74: -470937433208708268
+    second: torche_metallic_clean.001|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.007
+  - first:
+      74: -5475131689143228438
+    second: torche_metallic_clean.001|torche_metallic_clean|torche_metallic_clean|torche_fire_flameAc
+  - first:
+      74: 683182264135415434
+    second: torche_metallic_clean.001|torche_metallic_clean|torche_metallic_clean|torche_metallic_cle
+  - first:
+      74: 9035978297258180420
+    second: torche_metallic_clean.001|torche_metallic_clean|torche_metallic_clean|torche_wood_leather
+  - first:
+      74: -5926781722119068288
+    second: torche_metallic_clean.001|torche_wood_leather|torche_wood_leather|torche_fire_flameAction
+  - first:
+      74: -4535736909961441881
+    second: torche_metallic_clean.001|torche_wood_leather|torche_wood_leather|torche_metallic_cleanAc
+  - first:
+      74: -3872457480823077542
+    second: torche_metallic_clean.001|torche_wood_leather|torche_wood_leather|torche_wood_leatherActi
+  - first:
+      74: 4094955569511032148
+    second: torche_metallic_clean.002|Firebolt.Big.001|Firebolt.Big.001|light rune
+      v1.002|Firebolt.Bi
+  - first:
+      74: 8646968130819751162
+    second: torche_metallic_clean.002|Firebolt.Big|Firebolt.Big|light rune v1|Firebolt.Big|light
+      rune
+  - first:
+      74: 3119610082334750801
+    second: torche_metallic_clean.002|Rune.Default|Rune.Default|pick up rune|Rune.Default|pick
+      up run
+  - first:
+      74: -6634223286973335999
+    second: torche_metallic_clean.002|torche_fire_flame|torche_fire_flame|torche_fire_flameAction.001
+  - first:
+      74: -4494423622104071463
+    second: torche_metallic_clean.002|torche_fire_flame|torche_fire_flame|torche_metallic_cleanAction
+  - first:
+      74: -6243707812644659210
+    second: torche_metallic_clean.002|torche_fire_flame|torche_fire_flame|torche_wood_leatherAction|t
+  - first:
+      74: 3985851530083436571
+    second: torche_metallic_clean.002|torche_metallic_clean|torche_metallic_clean|torche_fire_fla
+  - first:
+      74: -946890762002468988
+    second: torche_metallic_clean.002|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.001
+  - first:
+      74: -1881299343800405629
+    second: torche_metallic_clean.002|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.002
+  - first:
+      74: 5051179580303349075
+    second: torche_metallic_clean.002|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.003
+  - first:
+      74: 2422613452501001987
+    second: torche_metallic_clean.002|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.004
+  - first:
+      74: -8605267590131383041
+    second: torche_metallic_clean.002|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.005
+  - first:
+      74: 8899806774397921198
+    second: torche_metallic_clean.002|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.006
+  - first:
+      74: -6070167356979663501
+    second: torche_metallic_clean.002|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.007
+  - first:
+      74: -1743597359152122405
+    second: torche_metallic_clean.002|torche_metallic_clean|torche_metallic_clean|torche_fire_flameAc
+  - first:
+      74: 7404382434697711990
+    second: torche_metallic_clean.002|torche_metallic_clean|torche_metallic_clean|torche_metallic_cle
+  - first:
+      74: 9080505589416105483
+    second: torche_metallic_clean.002|torche_metallic_clean|torche_metallic_clean|torche_wood_leather
+  - first:
+      74: 6508454121272345786
+    second: torche_metallic_clean.002|torche_wood_leather|torche_wood_leather|torche_fire_flameAction
+  - first:
+      74: -3880718055294747297
+    second: torche_metallic_clean.002|torche_wood_leather|torche_wood_leather|torche_metallic_cleanAc
+  - first:
+      74: -2674860020673923182
+    second: torche_metallic_clean.002|torche_wood_leather|torche_wood_leather|torche_wood_leatherActi
+  - first:
+      74: -3042060734301250572
+    second: torche_metallic_clean.003|Firebolt.Big.001|Firebolt.Big.001|light rune
+      v1.002|Firebolt.Bi
+  - first:
+      74: -4400926534394099611
+    second: torche_metallic_clean.003|Firebolt.Big|Firebolt.Big|light rune v1|Firebolt.Big|light
+      rune
+  - first:
+      74: 2124067300890851437
+    second: torche_metallic_clean.003|Rune.Default|Rune.Default|pick up rune|Rune.Default|pick
+      up run
+  - first:
+      74: -8244473140633477702
+    second: torche_metallic_clean.003|torche_fire_flame|torche_fire_flame|torche_fire_flameAction.001
+  - first:
+      74: -4278124597660943058
+    second: torche_metallic_clean.003|torche_fire_flame|torche_fire_flame|torche_metallic_cleanAction
+  - first:
+      74: 2943006748538665417
+    second: torche_metallic_clean.003|torche_fire_flame|torche_fire_flame|torche_wood_leatherAction|t
+  - first:
+      74: -3562968394324626004
+    second: torche_metallic_clean.003|torche_metallic_clean|torche_metallic_clean|torche_fire_fla
+  - first:
+      74: 5316038581196579705
+    second: torche_metallic_clean.003|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.001
+  - first:
+      74: 6522329698468479808
+    second: torche_metallic_clean.003|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.002
+  - first:
+      74: 542054496269233697
+    second: torche_metallic_clean.003|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.003
+  - first:
+      74: -6309609369093614738
+    second: torche_metallic_clean.003|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.004
+  - first:
+      74: -6072980180514005551
+    second: torche_metallic_clean.003|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.005
+  - first:
+      74: -8694461580318371256
+    second: torche_metallic_clean.003|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.006
+  - first:
+      74: 8443472356862991032
+    second: torche_metallic_clean.003|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.007
+  - first:
+      74: -2746284704070372548
+    second: torche_metallic_clean.003|torche_metallic_clean|torche_metallic_clean|torche_fire_flameAc
+  - first:
+      74: -4980189940974559975
+    second: torche_metallic_clean.003|torche_metallic_clean|torche_metallic_clean|torche_metallic_cle
+  - first:
+      74: 768750219577557075
+    second: torche_metallic_clean.003|torche_metallic_clean|torche_metallic_clean|torche_wood_leather
+  - first:
+      74: 5165717790470126991
+    second: torche_metallic_clean.003|torche_wood_leather|torche_wood_leather|torche_fire_flameAction
+  - first:
+      74: -1129517348997629839
+    second: torche_metallic_clean.003|torche_wood_leather|torche_wood_leather|torche_metallic_cleanAc
+  - first:
+      74: -4870090584229429345
+    second: torche_metallic_clean.003|torche_wood_leather|torche_wood_leather|torche_wood_leatherActi
+  - first:
+      74: 5883145941811958716
+    second: torche_metallic_clean.004|Firebolt.Big.001|Firebolt.Big.001|light rune
+      v1.002|Firebolt.Bi
+  - first:
+      74: 7438569545226615760
+    second: torche_metallic_clean.004|Firebolt.Big|Firebolt.Big|light rune v1|Firebolt.Big|light
+      rune
+  - first:
+      74: -5743384495550425464
+    second: torche_metallic_clean.004|Rune.Default|Rune.Default|pick up rune|Rune.Default|pick
+      up run
+  - first:
+      74: 7263927677002132205
+    second: torche_metallic_clean.004|torche_fire_flame|torche_fire_flame|torche_fire_flameAction.001
+  - first:
+      74: -3574193832156509097
+    second: torche_metallic_clean.004|torche_fire_flame|torche_fire_flame|torche_metallic_cleanAction
+  - first:
+      74: -599897552785224515
+    second: torche_metallic_clean.004|torche_fire_flame|torche_fire_flame|torche_wood_leatherAction|t
+  - first:
+      74: -8517271913226029779
+    second: torche_metallic_clean.004|torche_metallic_clean|torche_metallic_clean|torche_fire_fla
+  - first:
+      74: 8998012842279202942
+    second: torche_metallic_clean.004|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.001
+  - first:
+      74: -4519243789101074139
+    second: torche_metallic_clean.004|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.002
+  - first:
+      74: -4492779620200979010
+    second: torche_metallic_clean.004|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.003
+  - first:
+      74: 1761570413366161347
+    second: torche_metallic_clean.004|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.004
+  - first:
+      74: 8814300683974637238
+    second: torche_metallic_clean.004|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.005
+  - first:
+      74: 2803597231532786197
+    second: torche_metallic_clean.004|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.006
+  - first:
+      74: 5930654627359938715
+    second: torche_metallic_clean.004|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.007
+  - first:
+      74: 4799914223723069998
+    second: torche_metallic_clean.004|torche_metallic_clean|torche_metallic_clean|torche_fire_flameAc
+  - first:
+      74: 5199592682325617023
+    second: torche_metallic_clean.004|torche_metallic_clean|torche_metallic_clean|torche_metallic_cle
+  - first:
+      74: 7206030630138101190
+    second: torche_metallic_clean.004|torche_metallic_clean|torche_metallic_clean|torche_wood_leather
+  - first:
+      74: -6613651201910801585
+    second: torche_metallic_clean.004|torche_wood_leather|torche_wood_leather|torche_fire_flameAction
+  - first:
+      74: 7431282646852479963
+    second: torche_metallic_clean.004|torche_wood_leather|torche_wood_leather|torche_metallic_cleanAc
+  - first:
+      74: -7765119274242696490
+    second: torche_metallic_clean.004|torche_wood_leather|torche_wood_leather|torche_wood_leatherActi
+  - first:
+      74: 9080227514024947628
+    second: torche_metallic_clean.005|Firebolt.Big.001|Firebolt.Big.001|light rune
+      v1.002|Firebolt.Bi
+  - first:
+      74: 1638889284173376853
+    second: torche_metallic_clean.005|Firebolt.Big|Firebolt.Big|light rune v1|Firebolt.Big|light
+      rune
+  - first:
+      74: 5366973417524123011
+    second: torche_metallic_clean.005|Rune.Default|Rune.Default|pick up rune|Rune.Default|pick
+      up run
+  - first:
+      74: -9006847990467160079
+    second: torche_metallic_clean.005|torche_fire_flame|torche_fire_flame|torche_fire_flameAction.001
+  - first:
+      74: -7915064786132398690
+    second: torche_metallic_clean.005|torche_fire_flame|torche_fire_flame|torche_metallic_cleanAction
+  - first:
+      74: 5156154726341248305
+    second: torche_metallic_clean.005|torche_fire_flame|torche_fire_flame|torche_wood_leatherAction|t
+  - first:
+      74: -2252780498703090430
+    second: torche_metallic_clean.005|torche_metallic_clean|torche_metallic_clean|torche_fire_fla
+  - first:
+      74: -7043363371443146047
+    second: torche_metallic_clean.005|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.001
+  - first:
+      74: -6533491224895605108
+    second: torche_metallic_clean.005|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.002
+  - first:
+      74: 4641866773289689036
+    second: torche_metallic_clean.005|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.003
+  - first:
+      74: 8098402286547491334
+    second: torche_metallic_clean.005|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.004
+  - first:
+      74: 8246042584387312402
+    second: torche_metallic_clean.005|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.005
+  - first:
+      74: 3967357379933169672
+    second: torche_metallic_clean.005|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.006
+  - first:
+      74: -6178021149091475546
+    second: torche_metallic_clean.005|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.007
+  - first:
+      74: -2421609029184905046
+    second: torche_metallic_clean.005|torche_metallic_clean|torche_metallic_clean|torche_fire_flameAc
+  - first:
+      74: 702719486864863853
+    second: torche_metallic_clean.005|torche_metallic_clean|torche_metallic_clean|torche_metallic_cle
+  - first:
+      74: -6072748368681331762
+    second: torche_metallic_clean.005|torche_metallic_clean|torche_metallic_clean|torche_wood_leather
+  - first:
+      74: 5609325035437921353
+    second: torche_metallic_clean.005|torche_wood_leather|torche_wood_leather|torche_fire_flameAction
+  - first:
+      74: -3248106445870392136
+    second: torche_metallic_clean.005|torche_wood_leather|torche_wood_leather|torche_metallic_cleanAc
+  - first:
+      74: 3782521024632869555
+    second: torche_metallic_clean.005|torche_wood_leather|torche_wood_leather|torche_wood_leatherActi
+  - first:
+      74: 2184755686966728895
+    second: torche_metallic_clean.006|Firebolt.Big.001|Firebolt.Big.001|light rune
+      v1.002|Firebolt.Bi
+  - first:
+      74: 3266006472923695380
+    second: torche_metallic_clean.006|Firebolt.Big|Firebolt.Big|light rune v1|Firebolt.Big|light
+      rune
+  - first:
+      74: -4459663158558561819
+    second: torche_metallic_clean.006|Rune.Default|Rune.Default|pick up rune|Rune.Default|pick
+      up run
+  - first:
+      74: 2535710919010023675
+    second: torche_metallic_clean.006|torche_fire_flame|torche_fire_flame|torche_fire_flameAction.001
+  - first:
+      74: 1375211295191403222
+    second: torche_metallic_clean.006|torche_fire_flame|torche_fire_flame|torche_metallic_cleanAction
+  - first:
+      74: 6130401059794558962
+    second: torche_metallic_clean.006|torche_fire_flame|torche_fire_flame|torche_wood_leatherAction|t
+  - first:
+      74: -1378313870990661827
+    second: torche_metallic_clean.006|torche_metallic_clean|torche_metallic_clean|torche_fire_fla
+  - first:
+      74: 850038588920739421
+    second: torche_metallic_clean.006|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.001
+  - first:
+      74: -4703665826955408171
+    second: torche_metallic_clean.006|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.002
+  - first:
+      74: 6975009303701965431
+    second: torche_metallic_clean.006|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.003
+  - first:
+      74: 8663691877409686452
+    second: torche_metallic_clean.006|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.004
+  - first:
+      74: -1937628767964638983
+    second: torche_metallic_clean.006|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.005
+  - first:
+      74: 7906323625978731916
+    second: torche_metallic_clean.006|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.006
+  - first:
+      74: 1014833811582636359
+    second: torche_metallic_clean.006|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.007
+  - first:
+      74: 2640979639329122942
+    second: torche_metallic_clean.006|torche_metallic_clean|torche_metallic_clean|torche_fire_flameAc
+  - first:
+      74: 8134834587162221383
+    second: torche_metallic_clean.006|torche_metallic_clean|torche_metallic_clean|torche_metallic_cle
+  - first:
+      74: 2210080485619857413
+    second: torche_metallic_clean.006|torche_metallic_clean|torche_metallic_clean|torche_wood_leather
+  - first:
+      74: 8806864330635655929
+    second: torche_metallic_clean.006|torche_wood_leather|torche_wood_leather|torche_fire_flameAction
+  - first:
+      74: -7908308739643890776
+    second: torche_metallic_clean.006|torche_wood_leather|torche_wood_leather|torche_metallic_cleanAc
+  - first:
+      74: 700028123783378859
+    second: torche_metallic_clean.006|torche_wood_leather|torche_wood_leather|torche_wood_leatherActi
+  - first:
+      74: 7617906249187182457
+    second: torche_metallic_clean.007|Firebolt.Big.001|Firebolt.Big.001|light rune
+      v1.002|Firebolt.Bi
+  - first:
+      74: 658551921823893669
+    second: torche_metallic_clean.007|Firebolt.Big|Firebolt.Big|light rune v1|Firebolt.Big|light
+      rune
+  - first:
+      74: 4782394289182955398
+    second: torche_metallic_clean.007|Rune.Default|Rune.Default|pick up rune|Rune.Default|pick
+      up run
+  - first:
+      74: -8224120485360436348
+    second: torche_metallic_clean.007|torche_fire_flame|torche_fire_flame|torche_fire_flameAction.001
+  - first:
+      74: 1889957241818575027
+    second: torche_metallic_clean.007|torche_fire_flame|torche_fire_flame|torche_metallic_cleanAction
+  - first:
+      74: 2539830551216985368
+    second: torche_metallic_clean.007|torche_fire_flame|torche_fire_flame|torche_wood_leatherAction|t
+  - first:
+      74: -1769663847610165460
+    second: torche_metallic_clean.007|torche_metallic_clean|torche_metallic_clean|torche_fire_fla
+  - first:
+      74: 35189796875853017
+    second: torche_metallic_clean.007|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.001
+  - first:
+      74: -5222672918424961231
+    second: torche_metallic_clean.007|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.002
+  - first:
+      74: 2089656152697251353
+    second: torche_metallic_clean.007|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.003
+  - first:
+      74: -7886017954528431730
+    second: torche_metallic_clean.007|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.004
+  - first:
+      74: -2961223002131423027
+    second: torche_metallic_clean.007|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.005
+  - first:
+      74: 2535664224716614453
+    second: torche_metallic_clean.007|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.006
+  - first:
+      74: -533202789417011762
+    second: torche_metallic_clean.007|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.007
+  - first:
+      74: 8068123330573237138
+    second: torche_metallic_clean.007|torche_metallic_clean|torche_metallic_clean|torche_fire_flameAc
+  - first:
+      74: 5051421235770553205
+    second: torche_metallic_clean.007|torche_metallic_clean|torche_metallic_clean|torche_metallic_cle
+  - first:
+      74: -8782451342863229645
+    second: torche_metallic_clean.007|torche_metallic_clean|torche_metallic_clean|torche_wood_leather
+  - first:
+      74: 6950743204179604713
+    second: torche_metallic_clean.007|torche_wood_leather|torche_wood_leather|torche_fire_flameAction
+  - first:
+      74: -2084168452271843382
+    second: torche_metallic_clean.007|torche_wood_leather|torche_wood_leather|torche_metallic_cleanAc
+  - first:
+      74: 8639048257354176172
+    second: torche_metallic_clean.007|torche_wood_leather|torche_wood_leather|torche_wood_leatherActi
+  - first:
+      74: -7627424986890059231
+    second: torche_metallic_clean.008|Firebolt.Big.001|Firebolt.Big.001|light rune
+      v1.002|Firebolt.Bi
+  - first:
+      74: -8077738300247268907
+    second: torche_metallic_clean.008|Firebolt.Big|Firebolt.Big|light rune v1|Firebolt.Big|light
+      rune
+  - first:
+      74: 5818898206479640382
+    second: torche_metallic_clean.008|Rune.Default|Rune.Default|pick up rune|Rune.Default|pick
+      up run
+  - first:
+      74: 1538525597317798157
+    second: torche_metallic_clean.008|torche_fire_flame|torche_fire_flame|torche_fire_flameAction.001
+  - first:
+      74: 969535516846841877
+    second: torche_metallic_clean.008|torche_fire_flame|torche_fire_flame|torche_metallic_cleanAction
+  - first:
+      74: 2491914357139130138
+    second: torche_metallic_clean.008|torche_fire_flame|torche_fire_flame|torche_wood_leatherAction|t
+  - first:
+      74: -8656366893548270330
+    second: torche_metallic_clean.008|torche_metallic_clean|torche_metallic_clean|torche_fire_fla
+  - first:
+      74: 2334312729206944870
+    second: torche_metallic_clean.008|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.001
+  - first:
+      74: 2217290382899878162
+    second: torche_metallic_clean.008|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.002
+  - first:
+      74: -4345465275434618152
+    second: torche_metallic_clean.008|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.003
+  - first:
+      74: -4699200779354010971
+    second: torche_metallic_clean.008|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.004
+  - first:
+      74: 173338163090039271
+    second: torche_metallic_clean.008|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.005
+  - first:
+      74: -3204984828862895128
+    second: torche_metallic_clean.008|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.006
+  - first:
+      74: 2122145419793001164
+    second: torche_metallic_clean.008|torche_metallic_clean|torche_metallic_clean|torche_fire_fla.007
+  - first:
+      74: 167631401591269719
+    second: torche_metallic_clean.008|torche_metallic_clean|torche_metallic_clean|torche_fire_flameAc
+  - first:
+      74: -4893879191119219553
+    second: torche_metallic_clean.008|torche_metallic_clean|torche_metallic_clean|torche_metallic_cle
+  - first:
+      74: 8671964991708484074
+    second: torche_metallic_clean.008|torche_metallic_clean|torche_metallic_clean|torche_wood_leather
+  - first:
+      74: -9191170252073251446
+    second: torche_metallic_clean.008|torche_wood_leather|torche_wood_leather|torche_fire_flameAction
+  - first:
+      74: -1300731673529939549
+    second: torche_metallic_clean.008|torche_wood_leather|torche_wood_leather|torche_metallic_cleanAc
+  - first:
+      74: 8317445596347236228
+    second: torche_metallic_clean.008|torche_wood_leather|torche_wood_leather|torche_wood_leatherActi
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 2
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

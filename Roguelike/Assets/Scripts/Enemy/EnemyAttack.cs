@@ -1,31 +1,39 @@
+using System;
 using UnityEngine;
 
 public abstract class EnemyAttack : MonoBehaviour
 {
     [SerializeField] protected int Damage;
-    [SerializeField] private float _delayBetweenAttacks;
+    [SerializeField, Min(0.1f)] private float _delayBetweenAttacks;
     protected Transform AttackPosition;
-    private float _currentDelay;
+    private float _currentDelay = 0;
+    
+    public bool AbleAttack => _currentDelay <= 0;
+
+    private void Update()
+    {
+        if (AbleAttack == false)
+            _currentDelay -= Time.deltaTime;
+    }
 
     public void Init(Transform attackPosition)
     {
         AttackPosition = attackPosition;
-        _currentDelay = _delayBetweenAttacks;
     }
 
-    public abstract void Attack(Vector3 targetPosition);
-
-    public bool AbleToAttack()
+    public void TryAttack(Vector3 targetPosition)
     {
-        if (_currentDelay <= 0)
-        {
-            _currentDelay = _delayBetweenAttacks;
-            return true;
-        }
-        else
-        {
-            _currentDelay -= Time.deltaTime;
-            return false;
-        }
+        if (AbleAttack == false)
+            return;
+        
+        ResetDelay();
+        Attack(targetPosition);
+    }
+    
+    protected abstract void Attack(Vector3 targetPosition);
+
+    private void ResetDelay()
+    {
+        _currentDelay = _delayBetweenAttacks;
     }
 }

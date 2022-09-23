@@ -5,15 +5,13 @@ public class AttackState : State
     [SerializeField] private EnemyAttack _attack;
     [SerializeField] private Transform _attackPosition;
 
-    private void Start()
+    private void Awake()
     {
         _attack.Init(_attackPosition);
     }
 
     private void Update()
     {
-        if (_attack.AbleToAttack())
-            _attack.Attack(Target.transform.position);
+        _attack.TryAttack(Target.transform.position);
     }
-
 }
