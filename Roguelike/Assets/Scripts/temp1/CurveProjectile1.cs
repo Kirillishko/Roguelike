@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class CurveProjectile1 : MonoBehaviour
 {
     [SerializeField] private float _initialVelocity;
     [SerializeField] private float _angle;

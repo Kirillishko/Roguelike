@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 //[CreateAssetMenu(menuName = "BulletMovement/CurveBullet")]
-public class CurveBullet : BulletMovement
+public class CurveProjectile : ProjectileMovement
 {
     //[SerializeField] private AnimationCurve _animationY;
     //[SerializeField] private float _step;
@@ -156,7 +156,7 @@ public class CurveBullet : BulletMovement
         }
     }
 
-    public override void Move(Bullet bullet, Vector3 spawnPosition, Vector3 targetPosition, float speed)
+    public override void Move(Projectile projectile, Vector3 spawnPosition, Vector3 targetPosition, float speed)
     {
         Ray ray = new Ray(targetPosition, Vector3.down);
 
@@ -178,7 +178,7 @@ public class CurveBullet : BulletMovement
 
             //DrawPath(groundDirection.normalized, v0, angle, time, _step);
             StopAllCoroutines();
-            StartCoroutine(Coroutine_Movement(bullet.GetComponent<Rigidbody>(), groundDirection.normalized, spawnPosition, v0, angle, time));
+            StartCoroutine(Coroutine_Movement(projectile.GetComponent<Rigidbody>(), groundDirection.normalized, spawnPosition, v0, angle, time));
         }
     }
 }

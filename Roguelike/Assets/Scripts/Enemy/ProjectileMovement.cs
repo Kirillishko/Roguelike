@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BulletMovement : MonoBehaviour
+public abstract class ProjectileMovement : MonoBehaviour
 {
     public enum CallType
     {
@@ -12,5 +12,5 @@ public abstract class BulletMovement : MonoBehaviour
 
     public CallType Call => _call;
 
-    public abstract void Move(Bullet bullet, Vector3 spawnPosition, Vector3 targetPosition, float speed);
+    public abstract void Move(Projectile projectile, Vector3 spawnPosition, Vector3 targetPosition, float speed);
 }

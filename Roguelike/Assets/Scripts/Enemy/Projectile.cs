@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
-    [SerializeField] private BulletMovement _bulletMovement;
+    [SerializeField] private ProjectileMovement _bulletMovement;
     private Vector3 _startPosition;
     private Vector3 _targetPosition;
     private int _damage;
     private float _speed;
-    private BulletMovement.CallType _call;
+    private ProjectileMovement.CallType _call;
 
     private void Start()
     {
-        if (_bulletMovement.Call == BulletMovement.CallType.Start)
+        if (_bulletMovement.Call == ProjectileMovement.CallType.Start)
             _bulletMovement.Move(this, _startPosition, _targetPosition, _speed * Time.deltaTime);
         else
             _call = _bulletMovement.Call;
@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        if (_call == BulletMovement.CallType.Update)
+        if (_call == ProjectileMovement.CallType.Update)
             _bulletMovement.Move(this, _startPosition, _targetPosition, _speed * Time.deltaTime);
     }
 

@@ -4,7 +4,7 @@ public class Shoot : EnemyAttack
 {
     [SerializeField] private ShootLogic _logic;
     [SerializeField] private float _speed;
-    [SerializeField] private Bullet _bulletTemplate;
+    [SerializeField] private Projectile _projectileTemplate;
 
     protected override void Attack(Vector3 targetPosition)
     {
