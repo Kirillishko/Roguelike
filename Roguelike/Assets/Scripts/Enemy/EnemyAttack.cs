@@ -4,7 +4,9 @@ using UnityEngine;
 public abstract class EnemyAttack : MonoBehaviour
 {
     [SerializeField] protected int Damage;
+    [SerializeField] private ShootLogic _logic;
     [SerializeField, Min(0.1f)] private float _delayBetweenAttacks;
+    
     protected Transform AttackPosition;
     private float _currentDelay = 0;
     
@@ -21,13 +23,16 @@ public abstract class EnemyAttack : MonoBehaviour
         AttackPosition = attackPosition;
     }
 
-    public void TryAttack(Vector3 targetPosition)
+    public void TryAttack(Transform target)
     {
         if (AbleAttack == false)
             return;
         
         ResetDelay();
-        Attack(targetPosition);
+        _logic.Shoot(Attack, target);
+        
+        //ResetDelay();
+        //Attack(targetPosition);
     }
     
     protected abstract void Attack(Vector3 targetPosition);

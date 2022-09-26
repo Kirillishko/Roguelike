@@ -5,8 +5,11 @@ using UnityEngine;
 
 public abstract class ShootLogic : MonoBehaviour
 {
-    public void Shoot(Func<Vector3> set)
+    public virtual void Shoot(Action<Vector3> action, Transform target)
     {
-        set.Invoke();
+        StopAllCoroutines();
+        StartCoroutine(Shooting(action, target));
     }
+    
+    protected abstract IEnumerator Shooting(Action<Vector3> action, Transform target);
 }

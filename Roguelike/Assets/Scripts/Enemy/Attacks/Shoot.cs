@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Shoot : EnemyAttack
 {
-    [SerializeField] private ShootLogic _logic;
+    //[SerializeField] private ShootLogic _logic;
     [SerializeField] private float _speed;
     [SerializeField] private Projectile _projectileTemplate;
 
@@ -10,7 +11,7 @@ public class Shoot : EnemyAttack
     {
         var position = AttackPosition.position;
         
-        var newBullet = Instantiate(_bulletTemplate, position, _bulletTemplate.transform.rotation);
+        var newBullet = Instantiate(_projectileTemplate, position, _projectileTemplate.transform.rotation);
         newBullet.Init(Damage, _speed, position, targetPosition);
     }
 }

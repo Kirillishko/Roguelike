@@ -12,6 +12,6 @@ public class AttackState : State
 
     private void Update()
     {
-        _attack.TryAttack(Target.transform.position);
+        _attack.TryAttack(Target.transform);
     }
 }
