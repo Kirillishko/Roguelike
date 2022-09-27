@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 4603.51, g: 2945.877, b: 2175.668, a: 1}
+  m_IndirectSpecularColor: {r: 4613.4043, g: 2948.3457, b: 2170.9531, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -807,9 +807,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 5
   _logic: {fileID: 1007048056}
-  _delayBetweenAttacks: 3
-  _speed: 3
-  _projectileTemplate: {fileID: -3847217837027666589, guid: 83ea5797e0df15c41bb27d456e6e9954,
+  _delayBetweenAttacks: 1
+  _speed: 1
+  _projectileTemplate: {fileID: -3847217837027666589, guid: 353354cd2af5c124dbcfa479d32f05e8,
     type: 3}
 --- !u!114 &1007048055
 MonoBehaviour:
@@ -837,8 +837,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8a4139b539f9bd4f84065d22cca1c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotsCount: 1
-  _angle: 45
+  _shotsCount: 30
+  _angleOffset: 10
 --- !u!1 &1351046866
 GameObject:
   m_ObjectHideFlags: 0

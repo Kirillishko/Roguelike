@@ -15,6 +15,8 @@ public class Projectile : MonoBehaviour
             _bulletMovement.Move(this, _startPosition, _targetPosition, _speed * Time.deltaTime);
         else
             _call = _bulletMovement.Call;
+        
+        Destroy(gameObject, 10);
     }
 
     private void Update()
