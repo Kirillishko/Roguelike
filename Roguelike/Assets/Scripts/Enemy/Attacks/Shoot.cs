@@ -5,14 +5,14 @@ public class Shoot : EnemyAttack
 {
     [SerializeField] private float _speed;
     [SerializeField] private Projectile _projectileTemplate;
-    [SerializeField, Min(1)] private float _timeToDestroy;
+    [SerializeField, Min(1)] private float _timeToReleaseProjectile;
 
     private ObjectPool<Projectile> _pool;
 
     private void Start()
     {
-        int defaultCapacity = (int) (_timeToDestroy / DelayBetweenAttacks * Logic.ShotsCount);
-        int maxSize = (int) (defaultCapacity * 1.5f);
+        var defaultCapacity = (int) (_timeToReleaseProjectile / DelayBetweenAttacks * Logic.ShotsCount);
+        var maxSize = (int) (defaultCapacity * 1.5f);
 
 
         _pool = new ObjectPool<Projectile>(() =>
@@ -33,6 +33,6 @@ public class Shoot : EnemyAttack
 
         var newBullet = _pool.Get();
         newBullet.transform.SetPositionAndRotation(position, _projectileTemplate.transform.rotation);
-        newBullet.SetParameters(Damage, _speed, position, targetPosition);
+        newBullet.SetParameters(Damage, _speed, _timeToReleaseProjectile, position, targetPosition);
     }
 }

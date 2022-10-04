@@ -29,23 +29,6 @@ public class Projectile : MonoBehaviour
             _bulletMovement.Move(this, _startPosition, _targetPosition, _speed * Time.deltaTime);
     }
 
-    public void Init(ObjectPool<Projectile> pool)
-    {
-        _pool = pool;
-    }
-
-    public void SetParameters(int damage, float speed, Vector3 startPosition, Vector3 targetPosition)
-    {
-        _damage = damage;
-        _startPosition = startPosition;
-        _targetPosition = targetPosition;
-        _speed = speed;
-
-        _isReleased = false;
-        StopAllCoroutines();
-        StartCoroutine(TryRelease());
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Player player))
@@ -55,17 +38,36 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    public void Init(ObjectPool<Projectile> pool)
+    {
+        _pool = pool;
+    }
+
+    public void SetParameters(int damage, float speed, float timeToRelease, Vector3 startPosition, Vector3 targetPosition)
+    {
+        _damage = damage;
+        _startPosition = startPosition;
+        _targetPosition = targetPosition;
+        _speed = speed;
+
+        _isReleased = false;
+        StopAllCoroutines();
+        StartCoroutine(TryRelease(timeToRelease));
+    }
+
     private void Release()
     {
         _pool.Release(this);
         _isReleased = true;
     }
 
-    private IEnumerator TryRelease()
+    private IEnumerator TryRelease(float timeToRelease)
     {
-        yield return new WaitForSecondsRealtime(5f);
-
         if (_isReleased == false)
+        {
             Release();
+        }
+
+        yield return new WaitForSecondsRealtime(timeToRelease);
     }
 }
