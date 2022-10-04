@@ -1,7 +1,6 @@
 using UnityEngine;
 
-//[CreateAssetMenu(menuName = "BulletMovement/StraightBullet")]
-public class StraightBullet : ProjectileMovement
+public class StraightProjectile : ProjectileMovement
 {
     private const float _speedModifier = 2000; 
 

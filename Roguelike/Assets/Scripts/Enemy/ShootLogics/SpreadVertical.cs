@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class SpreadVertical : ShootLogic
 {
-    [SerializeField, Min(1)] private int _shotsCount;
+    [SerializeField, Min(0)] private float _delayBetweenShots;
     [SerializeField, Range(0.1f, 3f)] private float _minRadius;
     [SerializeField, Range(0.1f, 3f)] private float _maxRadius;
 
@@ -25,15 +25,17 @@ public class SpreadVertical : ShootLogic
     {
         var targetPosition = target.position;
         var counter = 0;
-        
-        while (counter < _shotsCount)
+        var delay = new WaitForSeconds(_delayBetweenShots);
+
+        while (counter < ShotsCount)
         {
             var nextPosition = GetSpreadPosition(targetPosition, _minRadius, _maxRadius);
             action?.Invoke(nextPosition);
             counter++;
+            
+            if (_delayBetweenShots != 0)
+                yield return delay;
         }
-        
-        yield return null;
     }
 
     private Vector3 GetSpreadPosition(Vector3 targetPosition, float minRadius, float maxRadius)

@@ -2,9 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Spread : ShootLogic
+public class SpreadHorizontal : ShootLogic
 {
-    [SerializeField, Min(1)] private int _shotsCount;
     [SerializeField, Range(0, 360)] private float _angleOffset;
 
     protected override IEnumerator Shooting(Action<Vector3> action, Transform target)
@@ -13,14 +12,14 @@ public class Spread : ShootLogic
         var radius = Vector3.Distance(transform.position, targetPosition);
         var counter = 0;
 
-        if (_shotsCount % 2 == 1)
+        if (ShotsCount % 2 == 1)
         {
             var nextPosition = GetSpreadPosition(targetPosition, radius, 0);
             action?.Invoke(nextPosition);
             counter++;
         }
 
-        while (counter < _shotsCount)
+        while (counter < ShotsCount)
         {
             float multiplier = counter == 0 ? Mathf.CeilToInt((counter + 1) / 2f) : Mathf.CeilToInt(counter / 2f);
 

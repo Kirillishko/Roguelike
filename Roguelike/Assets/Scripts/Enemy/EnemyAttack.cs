@@ -1,16 +1,16 @@
-using System;
 using UnityEngine;
 
 public abstract class EnemyAttack : MonoBehaviour
 {
     [SerializeField] protected int Damage;
-    [SerializeField] private ShootLogic _logic;
+    [SerializeField] protected ShootLogic Logic;
     [SerializeField, Min(0.1f)] private float _delayBetweenAttacks;
     
     protected Transform AttackPosition;
     private float _currentDelay = 0;
     
     public bool AbleAttack => _currentDelay <= 0;
+    public float DelayBetweenAttacks => _delayBetweenAttacks;
 
     private void Update()
     {
@@ -29,7 +29,7 @@ public abstract class EnemyAttack : MonoBehaviour
             return;
         
         ResetDelay();
-        _logic.Shoot(Attack, target);
+        Logic.Shoot(Attack, target);
         
         //ResetDelay();
         //Attack(targetPosition);

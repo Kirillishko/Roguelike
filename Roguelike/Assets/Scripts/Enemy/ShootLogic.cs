@@ -4,6 +4,10 @@ using UnityEngine;
 
 public abstract class ShootLogic : MonoBehaviour
 {
+    [SerializeField, Min(1)] protected int _shotsCount;
+
+    public int ShotsCount => _shotsCount;
+
     public virtual void Shoot(Action<Vector3> action, Transform target)
     {
         StopAllCoroutines();
