@@ -1,23 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Transition : MonoBehaviour
+public abstract class Transition : MonoBehaviour
 {
-    [SerializeField] public State _targetState;
+    [SerializeField] private State _targetState;
 
-    protected Player Target { get; private set; }
     public State TargetState => _targetState;
-
+    protected Player Target { get; private set; }
     public bool NeedTransit { get; protected set; }
+
+    private void OnEnable()
+    {
+        NeedTransit = false;
+    }
+
+    private void Update()
+    {
+        if (NeedTransit)
+            return;
+        
+        Check();
+    }
 
     public void Init(Player target)
     {
         Target = target;
     }
 
-    private void OnEnable()
-    {
-        NeedTransit = false;
-    }
+    protected abstract void Check();
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spread : ShootLogic
@@ -23,7 +22,8 @@ public class Spread : ShootLogic
 
         while (counter < _shotsCount)
         {
-            var multiplier = Mathf.CeilToInt(counter / 2f);
+            float multiplier = counter == 0 ? Mathf.CeilToInt((counter + 1) / 2f) : Mathf.CeilToInt(counter / 2f);
+
             var currentAngleOffset = _angleOffset * multiplier;
 
             if (counter % 2 == 1)
@@ -56,7 +56,7 @@ public class Spread : ShootLogic
 
     private float GetAngle(Vector3 from, Vector3 direction, float angleOffset)
     {
-        var halfTurn = Mathf.PI * Mathf.Rad2Deg;
+        const float halfTurn = Mathf.PI * Mathf.Rad2Deg;
         var signedAngle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
         var angle = (signedAngle + halfTurn) * -1 - (halfTurn / 2) + angleOffset;
         angle *= Mathf.Deg2Rad;
