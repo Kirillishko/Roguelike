@@ -8,7 +8,7 @@ public abstract class ShootLogic : MonoBehaviour
 
     public int ShotsCount => _shotsCount;
 
-    public virtual void Shoot(Action<Vector3> action, Transform target)
+    public void Shoot(Action<Vector3> action, Transform target)
     {
         StopAllCoroutines();
         StartCoroutine(Shooting(action, target));

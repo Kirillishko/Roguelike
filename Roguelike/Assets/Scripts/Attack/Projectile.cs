@@ -4,38 +4,34 @@ using UnityEngine.Pool;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private TargetType _targetType;
     [SerializeField] private ProjectileMovement _bulletMovement;
 
     private Vector3 _startPosition;
     private Vector3 _targetPosition;
     private int _damage;
     private float _speed;
-    private ProjectileMovement.CallType _call;
     private ObjectPool<Projectile> _pool;
 
     private bool _isReleased = true;
 
-    private void Start()
-    {
-        if (_bulletMovement.Call == ProjectileMovement.CallType.Start)
-            _bulletMovement.Move(this, _startPosition, _targetPosition, _speed * Time.deltaTime);
-        else
-            _call = _bulletMovement.Call;;
-    }
-
-    private void Update()
-    {
-        if (_call == ProjectileMovement.CallType.Update)
-            _bulletMovement.Move(this, _startPosition, _targetPosition, _speed * Time.deltaTime);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out Projectile projectile))
+            return;
+        
+        switch (_targetType)
         {
-            player.TakeDamage(_damage);
-            Release();
+            case TargetType.Player when other.TryGetComponent(out Player player):
+                player.TakeDamage(_damage);
+                break;
+            case TargetType.Enemy when other.TryGetComponent(out Enemy enemy):
+                enemy.TakeDamage(_damage);
+                break;
         }
+        
+        
+        Release();
     }
 
     public void Init(ObjectPool<Projectile> pool)
@@ -53,6 +49,9 @@ public class Projectile : MonoBehaviour
         _isReleased = false;
         StopAllCoroutines();
         StartCoroutine(TryRelease(timeToRelease));
+
+        _bulletMovement.Reset();
+        _bulletMovement.Move(this, _startPosition, _targetPosition, _speed * Time.deltaTime);
     }
 
     private void Release()
@@ -63,11 +62,17 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator TryRelease(float timeToRelease)
     {
+        yield return new WaitForSecondsRealtime(timeToRelease);
+        
         if (_isReleased == false)
         {
             Release();
         }
-
-        yield return new WaitForSecondsRealtime(timeToRelease);
+    }
+    
+    private enum TargetType
+    {
+        Player,
+        Enemy
     }
 }

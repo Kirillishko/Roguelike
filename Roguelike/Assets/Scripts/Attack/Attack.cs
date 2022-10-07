@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class EnemyAttack : MonoBehaviour
+public abstract class Attack : MonoBehaviour
 {
     [SerializeField] protected int Damage;
     [SerializeField] protected ShootLogic Logic;
@@ -29,13 +29,13 @@ public abstract class EnemyAttack : MonoBehaviour
             return;
         
         ResetDelay();
-        Logic.Shoot(Attack, target);
+        Logic.Shoot(ToAttack, target);
         
         //ResetDelay();
         //Attack(targetPosition);
     }
     
-    protected abstract void Attack(Vector3 targetPosition);
+    protected abstract void ToAttack(Vector3 targetPosition);
 
     private void ResetDelay()
     {

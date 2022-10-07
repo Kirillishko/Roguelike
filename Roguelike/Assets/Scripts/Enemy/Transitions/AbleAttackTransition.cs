@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AbleAttackTransition : Transition
 {
-    [SerializeField] private EnemyAttack _attack;
+    [SerializeField] private Attack _attack;
 
     protected override void Check()
     {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    [SerializeField] private EnemyAttack _attack;
+    [SerializeField] private Attack _attack;
     [SerializeField] private Transform _attackPosition;
 
     private void Awake()
