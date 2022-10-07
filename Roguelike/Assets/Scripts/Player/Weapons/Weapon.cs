@@ -8,9 +8,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] private AmmoType _ammoType;
     [SerializeField] private Transform _attackPosition;
     [SerializeField] private Transform _targetPosition;
-
     [SerializeField] private Attack _fire;
     [SerializeField] private Attack _alternateFire;
+
+    public AmmoType AmmoType => _ammoType;
 
     private void Start()
     {
