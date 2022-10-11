@@ -1,18 +1,18 @@
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMover))]
-[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInputOld))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _health;
     [SerializeField] private PlayerTracker _playerCamera;
     private PlayerMover _mover;
-    private PlayerInput _input;
+    private PlayerInputOld _input;
 
     private void Start()
     {
         _mover = GetComponent<PlayerMover>();
-        _input = GetComponent<PlayerInput>();
+        _input = GetComponent<PlayerInputOld>();
     }
 
     public void TakeDamage(int damage)

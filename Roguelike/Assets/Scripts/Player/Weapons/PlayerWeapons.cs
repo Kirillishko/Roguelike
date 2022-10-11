@@ -42,6 +42,10 @@ public class PlayerWeapons : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit))
             {
                 if (hit.transform.TryGetComponent(out Weapon weapon))
+                {
+                    SetWeapon(weapon);
+                }
+                    
 
             }
 
@@ -66,9 +70,9 @@ public class PlayerWeapons : MonoBehaviour
 
     private void SetWeapon(Weapon weapon)
     {
-        for (int i = 0; i < _weaponSlots.Length; i++)
+        foreach (var weaponSlot in _weaponSlots)
         {
-            if (_weaponSlots[i].TrySetWeapon(weapon))
+            if (weaponSlot.TrySetWeapon(weapon))
                 break;
         }
     }

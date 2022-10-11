@@ -10,13 +10,13 @@ public class PlayerTracker : MonoBehaviour
     [SerializeField] private float _maxMovementEffectPower;
     private Vector3 _currentRotation = new Vector3(0, 0, 0);
 
-    void Start()
+    private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
-    void Update()
+    private void Update()
     {
         MouseRotate();
 
