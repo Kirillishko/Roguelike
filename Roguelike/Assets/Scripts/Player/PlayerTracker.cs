@@ -8,12 +8,13 @@ public class PlayerTracker : MonoBehaviour
     [SerializeField] private float _sensibility;
     [SerializeField] private float _movementEffectPower;
     [SerializeField] private float _maxMovementEffectPower;
+    
     private Vector3 _currentRotation = new Vector3(0, 0, 0);
 
     private void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
