@@ -24,22 +24,22 @@ public class PlayerWeapons : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            SwitchWeapon(0);
+            TrySwitchWeapon(0);
         if (Input.GetKeyDown(KeyCode.Alpha2))
-            SwitchWeapon(1);
+            TrySwitchWeapon(1);
         if (Input.GetKeyDown(KeyCode.Alpha3))
-            SwitchWeapon(2);
+            TrySwitchWeapon(2);
         if (Input.GetKeyDown(KeyCode.Alpha4))
-            SwitchWeapon(3);
+            TrySwitchWeapon(3);
 
-        if (Input.GetMouseButton(0))
-            TryFire();
-        if (Input.GetMouseButton(1))
-            TryAlternateFire();
+        //if (Input.GetMouseButton(0))
+        //    TryFire();
+        //if (Input.GetMouseButton(1))
+        //    TryAlternateFire();
 
         if (Input.GetKey(KeyCode.E))
         {
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit))
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 10, LayerMask.NameToLayer("Everything"), QueryTriggerInteraction.Collide))
             {
                 if (hit.transform.TryGetComponent(out Weapon weapon))
                 {
@@ -77,7 +77,7 @@ public class PlayerWeapons : MonoBehaviour
         }
     }
 
-    private void SwitchWeapon(int index)
+    private void TrySwitchWeapon(int index)
     {
         if (_currentWeaponSlotIndex == index)
             return;

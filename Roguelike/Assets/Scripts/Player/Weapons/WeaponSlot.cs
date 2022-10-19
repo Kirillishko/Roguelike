@@ -16,9 +16,10 @@ public class WeaponSlot : MonoBehaviour
 
     public bool TrySetWeapon(Weapon weapon)
     {
-        if (_weapon.AmmoType != _ammoType)
+        if (weapon.AmmoType != _ammoType)
             return false;
-        
+
+        weapon.transform.SetParent(transform);
         _weapon = weapon;
         return true;
     }
