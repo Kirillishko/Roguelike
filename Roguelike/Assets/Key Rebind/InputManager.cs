@@ -2,21 +2,36 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System;
+using UnityEngine.U2D;
 
-public static class InputManager
+public class InputManager : MonoBehaviour
 {
-    public static readonly InputActions InputActions;
+    [SerializeField] private SpriteAtlas _spriteAtlas;
+    
+    public static InputManager Instance { get; private set; }
 
-    public static event Action RebindComplete;
-    public static event Action RebindCanceled;
-    public static event Action<InputAction, int> RebindStarted;
+    public event Action RebindComplete;
+    public event Action RebindCanceled;
+    public event Action<InputAction, int> RebindStarted;
+    
+    public InputActions InputActions { get; private set; }
 
-    static InputManager()
+    private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
         InputActions = new InputActions();
     }
 
-    public static void StartRebind(string actionName, int bindingIndex, Text statusText, bool excludeMouse)
+    public void StartRebind(string actionName, int bindingIndex, Text statusText, bool excludeMouse)
     {
         var action = InputActions.asset.FindAction(actionName);
         
@@ -39,7 +54,7 @@ public static class InputManager
         }
     }
 
-    private static void DoRebind(InputAction actionToRebind, int bindingIndex, Text statusText, bool allCompositeParts, bool excludeMouse)
+    private void DoRebind(InputAction actionToRebind, int bindingIndex, Text statusText, bool allCompositeParts, bool excludeMouse)
     {
         if (actionToRebind == null || bindingIndex < 0)
             return;
@@ -83,13 +98,13 @@ public static class InputManager
         rebind.Start();
     }
 
-    public static string GetBindingName(string actionName, int bindingIndex)
+    public string GetBindingName(string actionName, int bindingIndex)
     {
         var action = InputActions.asset.FindAction(actionName);
         return action.GetBindingDisplayString(bindingIndex);
     }
 
-    private static void SaveBindingOverride(InputAction action)
+    private void SaveBindingOverride(InputAction action)
     {
         for (int i = 0; i < action.bindings.Count; i++)
         {
@@ -97,7 +112,7 @@ public static class InputManager
         }
     }
 
-    public static void LoadBindingOverride(string actionName)
+    public void LoadBindingOverride(string actionName)
     {
         var action = InputActions.asset.FindAction(actionName);
 
@@ -108,7 +123,7 @@ public static class InputManager
         }
     }
 
-    public static void ResetBinding(string actionName, int bindingIndex)
+    public void ResetBinding(string actionName, int bindingIndex)
     {
         var action = InputActions.asset.FindAction(actionName);
 
@@ -129,6 +144,11 @@ public static class InputManager
         }
 
         SaveBindingOverride(action);
+    }
+
+    public void GetButtonImage(string key)
+    {
+        _spriteAtlas.GetSprite(key);
     }
 
 }

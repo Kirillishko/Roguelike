@@ -11,10 +11,14 @@ public class JumpController : MonoBehaviour
     private Rigidbody rb;
     private Vector2 _direction;
     private InputAction _move;
+    private InputManager _input;
 
     private void OnEnable()
     {
-        gameActions = InputManager.InputActions;
+        if (_input == null)
+            _input = InputManager.Instance;
+        
+        gameActions = _input.InputActions;
 
         gameActions.Player.Jump.started += context => DoJump();
         gameActions.Player.Enable();
