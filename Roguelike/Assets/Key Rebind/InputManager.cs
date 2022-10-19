@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -7,7 +5,7 @@ using System;
 
 public static class InputManager
 {
-    public static InputActions InputActions;
+    public static readonly InputActions InputActions;
 
     public static event Action RebindComplete;
     public static event Action RebindCanceled;
@@ -21,6 +19,7 @@ public static class InputManager
     public static void StartRebind(string actionName, int bindingIndex, Text statusText, bool excludeMouse)
     {
         var action = InputActions.asset.FindAction(actionName);
+        
         if (action == null || action.bindings.Count <= bindingIndex)
         {
             Debug.Log("Couldn't find action or binding");
@@ -30,11 +29,14 @@ public static class InputManager
         if (action.bindings[bindingIndex].isComposite)
         {
             var firstPartIndex = bindingIndex + 1;
+            
             if (firstPartIndex < action.bindings.Count && action.bindings[firstPartIndex].isComposite)
                 DoRebind(action, bindingIndex, statusText, true, excludeMouse);
         }
         else
+        {
             DoRebind(action, bindingIndex, statusText, false, excludeMouse);
+        }
     }
 
     private static void DoRebind(InputAction actionToRebind, int bindingIndex, Text statusText, bool allCompositeParts, bool excludeMouse)
@@ -78,7 +80,7 @@ public static class InputManager
             rebind.WithControlsExcluding("Mouse");
 
         RebindStarted?.Invoke(actionToRebind, bindingIndex);
-        rebind.Start(); //actually starts the rebinding process
+        rebind.Start();
     }
 
     public static string GetBindingName(string actionName, int bindingIndex)
@@ -122,7 +124,9 @@ public static class InputManager
                 action.RemoveBindingOverride(i);
         }
         else
+        {
             action.RemoveBindingOverride(bindingIndex);
+        }
 
         SaveBindingOverride(action);
     }

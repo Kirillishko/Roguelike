@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Projectile projectile))
+        if (other.TryGetComponent(out Projectile _))
             return;
         
         switch (_targetType)

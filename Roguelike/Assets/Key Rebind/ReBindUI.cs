@@ -6,41 +6,31 @@ using UnityEngine.UI;
 
 public class ReBindUI : MonoBehaviour
 {
-    [SerializeField]
-    private InputActionReference inputActionReference; //this is on the SO
-
-    [SerializeField]
-    private bool excludeMouse = true;
-    [Range(0, 10)]
-    [SerializeField]
-    private int selectedBinding;
-    [SerializeField]
-    private InputBinding.DisplayStringOptions displayStringOptions;
+    [SerializeField] private InputActionReference _inputActionReference; //this is on the SO
+    [SerializeField] private bool _excludeMouse = true;
+    [SerializeField, Range(0, 10)] private int _selectedBinding;
+    [SerializeField] private InputBinding.DisplayStringOptions _displayStringOptions;
+    
     [Header("Binding Info - DO NOT EDIT")]
-    [SerializeField]
-    private InputBinding inputBinding;
-    private int bindingIndex;
+    [SerializeField] private InputBinding _inputBinding;
+    private int _bindingIndex;
 
-    private string actionName;
+    private string _actionName;
 
     [Header("UI Fields")]
-    [SerializeField]
-    private Text actionText;
-    [SerializeField]
-    private Button rebindButton;
-    [SerializeField]
-    private Text rebindText;
-    [SerializeField]
-    private Button resetButton;
+    [SerializeField] private Text _actionText;
+    [SerializeField] private Button _rebindButton;
+    [SerializeField] private Text _rebindText;
+    [SerializeField] private Button _resetButton;
 
     private void OnEnable()
     {
-        rebindButton.onClick.AddListener(() => DoRebind());
-        resetButton.onClick.AddListener(() => ResetBinding());
+        _rebindButton.onClick.AddListener(() => DoRebind());
+        _resetButton.onClick.AddListener(() => ResetBinding());
 
-        if(inputActionReference != null)
+        if(_inputActionReference != null)
         {
-            InputManager.LoadBindingOverride(actionName);
+            InputManager.LoadBindingOverride(_actionName);
             GetBindingInfo();
             UpdateUI();
         }
@@ -57,7 +47,7 @@ public class ReBindUI : MonoBehaviour
 
     private void OnValidate()
     {
-        if (inputActionReference == null)
+        if (_inputActionReference == null)
             return; 
 
         GetBindingInfo();
@@ -66,40 +56,38 @@ public class ReBindUI : MonoBehaviour
 
     private void GetBindingInfo()
     {
-        if (inputActionReference.action != null)
-            actionName = inputActionReference.action.name;
+        if (_inputActionReference.action == null)
+            return;
 
-        if(inputActionReference.action.bindings.Count > selectedBinding)
+        if (_inputActionReference.action.bindings.Count > _selectedBinding)
         {
-            inputBinding = inputActionReference.action.bindings[selectedBinding];
-            bindingIndex = selectedBinding;
+            _inputBinding = _inputActionReference.action.bindings[_selectedBinding];
+            _bindingIndex = _selectedBinding;
         }
     }
 
     private void UpdateUI()
     {
-        if (actionText != null)
-            actionText.text = actionName;
+        if (_actionText != null)
+            _actionText.text = _actionName;
 
-        if(rebindText != null)
+        if (_rebindText != null)
         {
             if (Application.isPlaying)
-            {
-                rebindText.text = InputManager.GetBindingName(actionName, bindingIndex);
-            }
+                _rebindText.text = InputManager.GetBindingName(_actionName, _bindingIndex);
             else
-                rebindText.text = inputActionReference.action.GetBindingDisplayString(bindingIndex);
+                _rebindText.text = _inputActionReference.action.GetBindingDisplayString(_bindingIndex);
         }
     }
 
     private void DoRebind()
     {
-        InputManager.StartRebind(actionName, bindingIndex, rebindText, excludeMouse);
+        InputManager.StartRebind(_actionName, _bindingIndex, _rebindText, _excludeMouse);
     }
 
     private void ResetBinding()
     {
-        InputManager.ResetBinding(actionName, bindingIndex);
+        InputManager.ResetBinding(_actionName, _bindingIndex);
         UpdateUI();
     }
 }
