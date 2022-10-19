@@ -19,7 +19,14 @@ public class WeaponSlot : MonoBehaviour
         if (weapon.AmmoType != _ammoType)
             return false;
 
+        if (_weapon != null)
+        {
+            _weapon.transform.SetParent(weapon.transform.parent);
+            _weapon.transform.position = weapon.transform.position;
+        }
+
         weapon.transform.SetParent(transform);
+        weapon.transform.position = transform.position;
         _weapon = weapon;
         return true;
     }

@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     {
         //if (Input.GetMouseButton(0))
         //    Fire();
-        
+
         //if (Input.GetMouseButton(1))
         //    AlternateFire();
     }

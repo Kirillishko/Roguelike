@@ -14,6 +14,7 @@ public static class InputManager
     static InputManager()
     {
         InputActions = new InputActions();
+        InputActions.Player.Enable();
     }
 
     public static void StartRebind(string actionName, int bindingIndex, Text statusText, bool excludeMouse)
