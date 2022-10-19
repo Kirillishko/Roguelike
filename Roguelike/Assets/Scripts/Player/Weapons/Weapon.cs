@@ -13,19 +13,19 @@ public class Weapon : MonoBehaviour
 
     public AmmoType AmmoType => _ammoType;
 
-    private void Start()
+    private void Update()
+    {
+        //if (Input.GetMouseButton(0))
+        //    Fire();
+
+        //if (Input.GetMouseButton(1))
+        //    AlternateFire();
+    }
+
+    public void Init()
     {
         _fire.Init(_attackPosition);
         _alternateFire.Init(_attackPosition);
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButton(0))
-            Fire();
-        
-        if (Input.GetMouseButton(1))
-            AlternateFire();
     }
 
     public void Fire()

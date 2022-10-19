@@ -29,6 +29,7 @@ public class InputManager : MonoBehaviour
         }
         
         InputActions = new InputActions();
+        InputActions.Player.Enable();
     }
 
     public void StartRebind(string actionName, int bindingIndex, Text statusText, bool excludeMouse)

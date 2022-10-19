@@ -8,11 +8,14 @@ public class PlayerTracker : MonoBehaviour
     [SerializeField] private float _sensibility;
     [SerializeField] private float _movementEffectPower;
     [SerializeField] private float _maxMovementEffectPower;
-    
+
+    private InputActions _input;
     private Vector3 _currentRotation = new Vector3(0, 0, 0);
 
     private void Start()
     {
+        _input = InputManager.InputActions;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -21,12 +24,13 @@ public class PlayerTracker : MonoBehaviour
     {
         MouseRotate();
 
-        float directionX = 0;
+        var direction = _input.Player.Move.ReadValue<Vector2>();
+        var directionX = direction.x;
 
-        if (Input.GetKey(KeyCode.A))
-            directionX = 1;
-        if (Input.GetKey(KeyCode.D))
-            directionX = -1;
+        //if (Input.GetKey(KeyCode.A))
+        //    directionX = 1;
+        //if (Input.GetKey(KeyCode.D))
+        //    directionX = -1;
 
         Rotate(directionX);
     }
