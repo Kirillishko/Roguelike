@@ -9,7 +9,8 @@ public class PlayerWeapons : MonoBehaviour
 
     private void Start()
     {
-        _input = InputManager.InputActions;
+        _input = InputManager.Instance.InputActions;
+        
         _input.Player.SelectFirstWeapon.performed += ctx => TrySwitchWeapon(0);
         _input.Player.SelectSecondWeapon.performed += ctx => TrySwitchWeapon(1);
         _input.Player.SelectThirdWeapon.performed += ctx => TrySwitchWeapon(2);

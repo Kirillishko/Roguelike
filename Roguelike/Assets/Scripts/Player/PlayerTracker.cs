@@ -14,10 +14,10 @@ public class PlayerTracker : MonoBehaviour
 
     private void Start()
     {
-        _input = InputManager.InputActions;
+        _input = InputManager.Instance.InputActions;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
     }
 
     private void Update()
