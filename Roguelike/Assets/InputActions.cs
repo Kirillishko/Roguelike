@@ -89,6 +89,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Check"",
+                    ""type"": ""Button"",
+                    ""id"": ""688b9932-6c78-42dc-a66e-e261a85cf6cf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Select Second Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6614563-b021-4359-8e34-84e851a420a2"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Check"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,6 +247,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_SelectSecondWeapon = m_Player.FindAction("Select Second Weapon", throwIfNotFound: true);
         m_Player_SelectThirdWeapon = m_Player.FindAction("Select Third Weapon", throwIfNotFound: true);
         m_Player_SelectFourthWeapon = m_Player.FindAction("Select Fourth Weapon", throwIfNotFound: true);
+        m_Player_Check = m_Player.FindAction("Check", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +314,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SelectSecondWeapon;
     private readonly InputAction m_Player_SelectThirdWeapon;
     private readonly InputAction m_Player_SelectFourthWeapon;
+    private readonly InputAction m_Player_Check;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -304,6 +326,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @SelectSecondWeapon => m_Wrapper.m_Player_SelectSecondWeapon;
         public InputAction @SelectThirdWeapon => m_Wrapper.m_Player_SelectThirdWeapon;
         public InputAction @SelectFourthWeapon => m_Wrapper.m_Player_SelectFourthWeapon;
+        public InputAction @Check => m_Wrapper.m_Player_Check;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -334,6 +357,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @SelectFourthWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectFourthWeapon;
                 @SelectFourthWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectFourthWeapon;
                 @SelectFourthWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectFourthWeapon;
+                @Check.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheck;
+                @Check.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheck;
+                @Check.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheck;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -359,6 +385,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @SelectFourthWeapon.started += instance.OnSelectFourthWeapon;
                 @SelectFourthWeapon.performed += instance.OnSelectFourthWeapon;
                 @SelectFourthWeapon.canceled += instance.OnSelectFourthWeapon;
+                @Check.started += instance.OnCheck;
+                @Check.performed += instance.OnCheck;
+                @Check.canceled += instance.OnCheck;
             }
         }
     }
@@ -372,5 +401,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnSelectSecondWeapon(InputAction.CallbackContext context);
         void OnSelectThirdWeapon(InputAction.CallbackContext context);
         void OnSelectFourthWeapon(InputAction.CallbackContext context);
+        void OnCheck(InputAction.CallbackContext context);
     }
 }

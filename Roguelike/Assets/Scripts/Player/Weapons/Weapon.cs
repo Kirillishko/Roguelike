@@ -8,19 +8,18 @@ public class Weapon : MonoBehaviour
     [SerializeField] private AmmoType _ammoType;
     [SerializeField] private Transform _attackPosition;
     [SerializeField] private Transform _targetPosition;
+    
+    [Header("Fire")]
     [SerializeField] private Attack _fire;
+    [SerializeField] private int _fireCost;
+    
+    [Header("Alternate Fire")]
     [SerializeField] private Attack _alternateFire;
+    [SerializeField] private int _alternateFireCost;
 
     public AmmoType AmmoType => _ammoType;
-
-    private void Update()
-    {
-        //if (Input.GetMouseButton(0))
-        //    Fire();
-
-        //if (Input.GetMouseButton(1))
-        //    AlternateFire();
-    }
+    public int FireCost => _fireCost;
+    public int AlternateFireCost => _alternateFireCost;
 
     public void Init()
     {

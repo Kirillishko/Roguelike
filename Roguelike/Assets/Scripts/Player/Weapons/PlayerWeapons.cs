@@ -3,33 +3,38 @@ using System;
 
 public class PlayerWeapons : MonoBehaviour
 {
-    private InputActions _input;
-    private WeaponSlot[] _weaponSlots;
+    public Action<Ammunition> WeaponChanged;
+
+    [SerializeField] private WeaponSlot[] _weaponSlots;
+    
     private int _currentWeaponSlotIndex = 0;
 
     private void Start()
     {
-        _input = InputManager.Instance.InputActions;
+        var input = InputManager.Instance.InputActions.Player;
         
-        _input.Player.SelectFirstWeapon.performed += ctx => TrySwitchWeapon(0);
-        _input.Player.SelectSecondWeapon.performed += ctx => TrySwitchWeapon(1);
-        _input.Player.SelectThirdWeapon.performed += ctx => TrySwitchWeapon(2);
-        _input.Player.SelectFourthWeapon.performed += ctx => TrySwitchWeapon(3);
-        _input.Player.Interact.performed += ctx => TrySetWeapon();
+        input.SelectFirstWeapon.performed += ctx => TrySwitchWeapon(0);
+        input.SelectSecondWeapon.performed += ctx => TrySwitchWeapon(1);
+        input.SelectThirdWeapon.performed += ctx => TrySwitchWeapon(2);
+        input.SelectFourthWeapon.performed += ctx => TrySwitchWeapon(3);
+        input.Interact.performed += ctx => TrySetWeapon();
+        
+        var ammunition = _weaponSlots[_currentWeaponSlotIndex].Ammunition;
+        WeaponChanged?.Invoke(ammunition);
 
-        _weaponSlots = new WeaponSlot[4];
-
-        for (int i = 0; i < _weaponSlots.Length; i++)
-        {
-            var weaponSlot = new GameObject();
-            weaponSlot.transform.SetParent(transform);
-            weaponSlot.transform.localPosition = Vector3.zero;
-            weaponSlot.name = "Weapon Slot " + (i + 1);
-
-            _weaponSlots[i] = weaponSlot.AddComponent<WeaponSlot>();
-            _weaponSlots[i].Init(AmmoType.First + i);
-            _weaponSlots[i].gameObject.SetActive(false);
-        }
+        // _weaponSlots = new WeaponSlot[4];
+        //
+        // for (int i = 0; i < _weaponSlots.Length; i++)
+        // {
+        //     var weaponSlot = new GameObject();
+        //     weaponSlot.transform.SetParent(transform);
+        //     weaponSlot.transform.localPosition = Vector3.zero;
+        //     weaponSlot.name = "Weapon Slot " + (i + 1);
+        //
+        //     _weaponSlots[i] = weaponSlot.AddComponent<WeaponSlot>();
+        //     _weaponSlots[i].Init(AmmoType.First + i);
+        //     _weaponSlots[i].gameObject.SetActive(false);
+        // }
     }
 
     private void Update()
@@ -68,15 +73,15 @@ public class PlayerWeapons : MonoBehaviour
         if (_weaponSlots[_currentWeaponSlotIndex].Weapon == null)
             throw new Exception("Try to fire from empty WeaponSlot");
 
-        _weaponSlots[_currentWeaponSlotIndex].Weapon.Fire();
+        _weaponSlots[_currentWeaponSlotIndex].TryFire();
     }
 
     private void TryAlternateFire()
     {
         if (_weaponSlots[_currentWeaponSlotIndex].Weapon == null)
-            throw new Exception("Try to alteranteFire from empty WeaponSlot");
+            throw new Exception("Try to alternateFire from empty WeaponSlot");
 
-        _weaponSlots[_currentWeaponSlotIndex].Weapon.AlternateFire();
+        _weaponSlots[_currentWeaponSlotIndex].TryAlternateFire();
     }
 
     private void TrySetWeapon()
@@ -105,5 +110,8 @@ public class PlayerWeapons : MonoBehaviour
         _weaponSlots[_currentWeaponSlotIndex].gameObject.SetActive(false);
         _currentWeaponSlotIndex = index;
         _weaponSlots[_currentWeaponSlotIndex].gameObject.SetActive(true);
+
+        var ammunition = _weaponSlots[_currentWeaponSlotIndex].Ammunition;
+        WeaponChanged?.Invoke(ammunition);
     }
 }
