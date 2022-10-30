@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be52b418efa3a0740bea4ad44168c074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetType: 1
   _bulletMovement: {fileID: 7509527219490194017}
 --- !u!114 &7509527219490194017
 MonoBehaviour:
@@ -142,4 +143,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b259106b9d2e9de4e8f1ad1b32bf7b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _call: 0

@@ -4,9 +4,9 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _health;
     [SerializeField] private int _armor;
-    [SerializeField] private Player _target;
+    [SerializeField] private PlayerHealth _target;
 
-    public Player Target => _target;
+    public PlayerHealth Target => _target;
 
     public void TakeDamage(int damage)
     {

@@ -11,6 +11,13 @@ public abstract class ShootLogic : MonoBehaviour
     public void Shoot(Action<Vector3> action, Transform target)
     {
         StopAllCoroutines();
+        
+        if (action == null)
+            Debug.Log("action null");
+        
+        if (target == null)
+            Debug.Log("target null");
+        
         StartCoroutine(Shooting(action, target));
     }
     

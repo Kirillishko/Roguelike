@@ -4,16 +4,14 @@ using UnityEngine.UI;
 
 public class CurrentAmmunitionView : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _value;
     [SerializeField] private PlayerWeapons _playerWeapons;
+    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private Slider _slider;
 
     private Ammunition _ammunition;
-    private Slider _slider;
 
     private void Awake()
     {
-        _slider = GetComponent<Slider>();
-
         _playerWeapons.WeaponChanged += OnWeaponChanged;
     }
     
@@ -48,11 +46,13 @@ public class CurrentAmmunitionView : MonoBehaviour
     private void OnValueChanged(int newValue)
     {
         _slider.value = newValue;
+        ChangeText();
     }
 
     private void OnMaxValueChanged(int newMaxValue)
     {
         _slider.maxValue = newMaxValue;
+        ChangeText();
     }
 
     private void OnWeaponChanged(Ammunition ammunition)
@@ -63,5 +63,10 @@ public class CurrentAmmunitionView : MonoBehaviour
         
         OnMaxValueChanged(_ammunition.MaxAmount);
         OnValueChanged(_ammunition.CurrentAmount);
+    }
+
+    private void ChangeText()
+    {
+        _text.text = $"{_slider.value} | {_slider.maxValue}";
     }
 }

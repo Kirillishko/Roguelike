@@ -1,61 +1,57 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
 
-[RequireComponent(typeof(SurfaceSlider))]
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _accelerationSpeed;
     [SerializeField] private float _jumpForce;
-    
+
+    private CharacterController _characterController;
     private InputAction _moveInput;
     private InputAction _jumpInput;
-    private SurfaceSlider _surfaceSlider;
-    private Rigidbody _rigidbody;
-    private bool _isJumped;
+    private bool _isGrounded;
     private float _jumpTime;
+    private Vector3 _fallingVelocity;
+    private float _lengthGroundChecking;
     
-    private readonly float _jumpDeadZone = 0.2f;
+    private const float _jumpDeadZone = 0.2f;
     private const float _minJumpTime = 0.01f;
     private const float _maxJumpTime = 0.1f;
+    private const float _gravity = -9.81f;
 
     private void Start()
     {
         _moveInput = InputManager.Instance.InputActions.Player.Move;
         _jumpInput = InputManager.Instance.InputActions.Player.Jump;
-
-        _surfaceSlider = GetComponent<SurfaceSlider>();
-        _rigidbody = GetComponent<Rigidbody>();
+        
+        _characterController = GetComponent<CharacterController>();
+        
+        _lengthGroundChecking = _characterController.height / 2 + 0.1f;
     }
 
     private void Update()
     {
+        CheckGrounded();
+        
+        if (_isGrounded)
+            _fallingVelocity.y = 0f;
+
         if (TryGetDirection(out var direction))
             Move(direction);
 
         if (TryGetJumpTime(out var jumpTimeInPercent))
             Jump(jumpTimeInPercent * _jumpForce);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (_isJumped == false)
-            return;
-
-        if (collision.transform.TryGetComponent(out Surface _))
-            _isJumped = false;
+        
+        TryEmulateGravity();
+        _characterController.Move(_fallingVelocity * Time.deltaTime);
     }
 
     private bool TryGetDirection(out Vector3 direction)
     {
         var value = _moveInput.ReadValue<Vector2>();
-        
-        direction = new Vector3(value.x, 0, value.y);
-        direction = transform.TransformDirection(direction);
-
+        direction = transform.forward * value.y + transform.right * value.x;
         return direction != Vector3.zero;
     }
 
@@ -65,18 +61,16 @@ public class PlayerMover : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
             speed = _accelerationSpeed;
-
-        Vector3 directionAlongSurface = _surfaceSlider.Project(direction.normalized);
-        Vector3 offset = directionAlongSurface * (speed * Time.deltaTime);
-
-        _rigidbody.MovePosition(_rigidbody.position + offset);
+        
+        var offset = direction * (speed * Time.deltaTime);
+        _characterController.Move(offset);
     }
 
     private bool TryGetJumpTime(out float jumpTimeInPercent)
     {
         jumpTimeInPercent = 0;
 
-        if (_isJumped)
+        if (_isGrounded == false)
             return false;
 
         var isJumpButtonPressed = _jumpInput.ReadValue<float>() > 0.5f;
@@ -105,7 +99,18 @@ public class PlayerMover : MonoBehaviour
 
     private void Jump(float jumpForce)
     {
-        _isJumped = true;
-        _rigidbody.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+        _fallingVelocity.y = Mathf.Sqrt(jumpForce * -2f * _gravity);
+    }
+
+    private void TryEmulateGravity()
+    {
+        var velocity = _gravity * Time.deltaTime;
+        _fallingVelocity.y += velocity;
+    }
+
+    private void CheckGrounded()
+    {
+        var ray = new Ray(transform.position, transform.up * -1);
+        _isGrounded = Physics.Raycast(ray, _lengthGroundChecking);
     }
 }

@@ -24,14 +24,20 @@ public class WeaponSlot : MonoBehaviour
 
     public void TryFire()
     {
-        if (_ammunition.CurrentAmount > _weapon.FireCost)
+        if (_ammunition.CurrentAmount > _weapon.FireCost && _weapon.CheckAbleAttacks())
+        {
             _weapon.Fire();
+            _ammunition.Add(-_weapon.FireCost);
+        }
     }
 
     public void TryAlternateFire()
     {
-        if (_ammunition.CurrentAmount > _weapon.AlternateFireCost)
+        if (_ammunition.CurrentAmount > _weapon.AlternateFireCost && _weapon.CheckAbleAttacks())
+        {
             _weapon.AlternateFire();
+            _ammunition.Add(-_weapon.AlternateFireCost);
+        }
     }
 
     public bool TrySetWeapon(Weapon weapon)
@@ -43,10 +49,12 @@ public class WeaponSlot : MonoBehaviour
         {
             _weapon.transform.SetParent(weapon.transform.parent);
             _weapon.transform.position = weapon.transform.position;
+            _weapon.GetComponent<Collider>().enabled = true;
         }
 
         weapon.transform.SetParent(transform);
         weapon.transform.position = transform.position;
+        weapon.GetComponent<Collider>().enabled = false;
         _weapon = weapon;
         return true;
     }

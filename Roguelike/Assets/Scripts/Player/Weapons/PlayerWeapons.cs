@@ -5,7 +5,9 @@ public class PlayerWeapons : MonoBehaviour
 {
     public Action<Ammunition> WeaponChanged;
 
+    [SerializeField] private PlayerTracker _playerTracker;
     [SerializeField] private WeaponSlot[] _weaponSlots;
+    [SerializeField] private Transform _target;
     
     private int _currentWeaponSlotIndex = 0;
 
@@ -21,20 +23,6 @@ public class PlayerWeapons : MonoBehaviour
         
         var ammunition = _weaponSlots[_currentWeaponSlotIndex].Ammunition;
         WeaponChanged?.Invoke(ammunition);
-
-        // _weaponSlots = new WeaponSlot[4];
-        //
-        // for (int i = 0; i < _weaponSlots.Length; i++)
-        // {
-        //     var weaponSlot = new GameObject();
-        //     weaponSlot.transform.SetParent(transform);
-        //     weaponSlot.transform.localPosition = Vector3.zero;
-        //     weaponSlot.name = "Weapon Slot " + (i + 1);
-        //
-        //     _weaponSlots[i] = weaponSlot.AddComponent<WeaponSlot>();
-        //     _weaponSlots[i].Init(AmmoType.First + i);
-        //     _weaponSlots[i].gameObject.SetActive(false);
-        // }
     }
 
     private void Update()
@@ -48,10 +36,10 @@ public class PlayerWeapons : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.Alpha4))
         //    TrySwitchWeapon(3);
 
-        //if (Input.GetMouseButton(0))
-        //    TryFire();
-        //if (Input.GetMouseButton(1))
-        //    TryAlternateFire();
+        if (Input.GetMouseButton(0))
+            TryFire();
+        if (Input.GetMouseButton(1))
+            TryAlternateFire();
 
         //if (Input.GetKey(KeyCode.E))
         //{
@@ -86,7 +74,9 @@ public class PlayerWeapons : MonoBehaviour
 
     private void TrySetWeapon()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 10, LayerMask.NameToLayer("Everything"), QueryTriggerInteraction.Collide))
+        var ray = new Ray(_playerTracker.transform.position, _playerTracker.transform.forward);
+        
+        if (Physics.Raycast(ray, out RaycastHit hit, 10, LayerMask.NameToLayer("Everything"), QueryTriggerInteraction.Collide))
         {
             if (hit.transform.TryGetComponent(out Weapon weapon))
             {

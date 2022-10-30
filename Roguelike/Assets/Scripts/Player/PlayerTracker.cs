@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerTracker : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerHealth _playerHealth;
     [SerializeField] private float _sensibility;
     [SerializeField] private float _movementEffectPower;
     [SerializeField] private float _maxMovementEffectPower;
@@ -45,7 +45,7 @@ public class PlayerTracker : MonoBehaviour
         _currentRotation.x = Mathf.Clamp(_currentRotation.x, -90, 90);
 
         transform.eulerAngles = _currentRotation;
-        _player.transform.eulerAngles = new Vector3(0, _currentRotation.y, 0);
+        _playerHealth.transform.eulerAngles = new Vector3(0, _currentRotation.y, 0);
     }
 
     private void Rotate(float directionX)

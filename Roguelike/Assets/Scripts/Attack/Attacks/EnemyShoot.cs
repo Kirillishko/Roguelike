@@ -8,9 +8,10 @@ public class EnemyShoot : Attack
     [SerializeField] protected Projectile ProjectileTemplate;
     [SerializeField, Min(1)] protected float TimeToReleaseProjectile;
 
-    protected ObjectPool<Projectile> Pool;
+    private ObjectPool<Projectile> _pool;
+    protected Projectile.TargetType TargetType = Projectile.TargetType.Player;
 
-    private void Start()
+    protected void Start()
     {
         var defaultCapacity = (int) (TimeToReleaseProjectile / DelayBetweenAttacks * Logic.ShotsCount);
         var maxSize = (int) (defaultCapacity * 1.5f);
@@ -18,10 +19,10 @@ public class EnemyShoot : Attack
         if (defaultCapacity == 0)
             throw new Exception(gameObject.name + "равен 0");
         
-        Pool = new ObjectPool<Projectile>(() =>
+        _pool = new ObjectPool<Projectile>(() =>
             {
                 var projectile = Instantiate(ProjectileTemplate);
-                projectile.Init(Pool);
+                projectile.Init(_pool);
                 return projectile;
             },
             projectile => { projectile.gameObject.SetActive(true); },
@@ -34,8 +35,8 @@ public class EnemyShoot : Attack
     {
         var position = AttackPosition.position;
 
-        var newBullet = Pool.Get();
+        var newBullet = _pool.Get();
         newBullet.transform.SetPositionAndRotation(position, ProjectileTemplate.transform.rotation);
-        newBullet.SetParameters(Damage, Speed, TimeToReleaseProjectile, position, targetPosition);
+        newBullet.SetParameters(Damage, Speed, TimeToReleaseProjectile, position, targetPosition, TargetType);
     }
 }

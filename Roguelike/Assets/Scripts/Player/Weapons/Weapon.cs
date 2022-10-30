@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -10,18 +7,18 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Transform _targetPosition;
     
     [Header("Fire")]
-    [SerializeField] private Attack _fire;
+    [SerializeField] private PlayerShoot _fire;
     [SerializeField] private int _fireCost;
     
     [Header("Alternate Fire")]
-    [SerializeField] private Attack _alternateFire;
+    [SerializeField] private PlayerShoot _alternateFire;
     [SerializeField] private int _alternateFireCost;
 
     public AmmoType AmmoType => _ammoType;
     public int FireCost => _fireCost;
     public int AlternateFireCost => _alternateFireCost;
 
-    public void Init()
+    public void Start()
     {
         _fire.Init(_attackPosition);
         _alternateFire.Init(_attackPosition);
@@ -34,7 +31,12 @@ public class Weapon : MonoBehaviour
 
     public void AlternateFire()
     {
-        _alternateFire.TryAttack(_targetPosition);
+            _alternateFire.TryAttack(_targetPosition);
+    }
+
+    public bool CheckAbleAttacks()
+    {
+        return _fire.AbleAttack && _alternateFire.AbleAttack;
     }
 }
 

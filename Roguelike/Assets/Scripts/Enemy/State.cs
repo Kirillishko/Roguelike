@@ -6,9 +6,9 @@ public class State : MonoBehaviour
 {
     [SerializeField] private List<Transition> _transitions;
 
-    protected Player Target { get; private set; }
+    protected PlayerHealth Target { get; private set; }
 
-    public void Enter(Player target)
+    public void Enter(PlayerHealth target)
     {
         Target = target;
         enabled = true;

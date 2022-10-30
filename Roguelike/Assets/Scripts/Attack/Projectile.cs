@@ -4,8 +4,8 @@ using UnityEngine.Pool;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private TargetType _targetType;
     [SerializeField] private ProjectileMovement _bulletMovement;
+    private TargetType _targetType;
 
     private Vector3 _startPosition;
     private Vector3 _targetPosition;
@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
         
         switch (_targetType)
         {
-            case TargetType.Player when other.TryGetComponent(out Player player):
+            case TargetType.Player when other.TryGetComponent(out PlayerHealth player):
                 player.TakeDamage(_damage);
                 break;
             case TargetType.Enemy when other.TryGetComponent(out Enemy enemy):
@@ -39,12 +39,13 @@ public class Projectile : MonoBehaviour
         _pool = pool;
     }
 
-    public void SetParameters(int damage, float speed, float timeToRelease, Vector3 startPosition, Vector3 targetPosition)
+    public void SetParameters(int damage, float speed, float timeToRelease, Vector3 startPosition, Vector3 targetPosition, TargetType targetType)
     {
         _damage = damage;
         _startPosition = startPosition;
         _targetPosition = targetPosition;
         _speed = speed;
+        _targetType = targetType;
 
         _isReleased = false;
         StopAllCoroutines();
@@ -70,7 +71,7 @@ public class Projectile : MonoBehaviour
         }
     }
     
-    private enum TargetType
+    public enum TargetType
     {
         Player,
         Enemy
