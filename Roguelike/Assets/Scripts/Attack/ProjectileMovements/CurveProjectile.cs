@@ -1,12 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-//[CreateAssetMenu(menuName = "BulletMovement/CurveBullet")]
 public class CurveProjectile : ProjectileMovement
 {
-    [SerializeField] private float _speedMultiplier;
-    private Camera _camera;
-
+    private float _speed;
+    
     private float QuadraticEquation(float a, float b, float c, float sign)
     {
         return (-b + sign * Mathf.Sqrt(b * b - 4 * a * c)) / (2 * a);
@@ -74,21 +72,21 @@ public class CurveProjectile : ProjectileMovement
             float y = v0 * t * Mathf.Sin(angle) - 0.5f * -Physics.gravity.y * Mathf.Pow(t, 2);
             rigidbody.MovePosition(spawnPosition + direction * x + Vector3.up * y);
 
-            t += Time.deltaTime * _speedMultiplier;
+            t += Time.deltaTime * _speed;
             yield return null;
         }
     }
 
     public override void Move(Projectile projectile, Vector3 spawnPosition, Vector3 targetPosition, float speed)
     {
-        Ray ray = new Ray(targetPosition, Vector3.down);
+        var ray = new Ray(targetPosition, Vector3.down);
+        _speed = speed;
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out var hit))
         {
-            Debug.Log(hit.transform.name);
-            Vector3 direction = hit.point - spawnPosition;
-            Vector3 groundDirection = new Vector3(direction.x, 0, direction.z);
-            Vector3 targetPos = new Vector3(groundDirection.magnitude, direction.y, 0);
+            var direction = hit.point - spawnPosition;
+            var groundDirection = new Vector3(direction.x, 0, direction.z);
+            var targetPos = new Vector3(groundDirection.magnitude, direction.y, 0);
 
             float angle;// = _angle * Mathf.Deg2Rad;
             float v0;
@@ -101,7 +99,7 @@ public class CurveProjectile : ProjectileMovement
 
             //DrawPath(groundDirection.normalized, v0, angle, time, _step);
             
-            StartCoroutine(Movement(projectile.GetComponent<Rigidbody>(), groundDirection.normalized, spawnPosition, v0, angle, time));
+            StartCoroutine(Movement(projectile.Rigidbody, groundDirection.normalized, spawnPosition, v0, angle, time));
         }
     }
 

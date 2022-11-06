@@ -1,14 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class State : MonoBehaviour
+public abstract class State : MonoBehaviour
 {
     [SerializeField] private List<Transition> _transitions;
 
-    protected PlayerHealth Target { get; private set; }
+    protected Player Target { get; private set; }
 
-    public void Enter(PlayerHealth target)
+    public void Enter(Player target)
     {
         Target = target;
         enabled = true;
@@ -41,4 +40,6 @@ public class State : MonoBehaviour
 
         return null;
     }
+
+    public abstract void Act();
 }

@@ -5,7 +5,7 @@ public abstract class Transition : MonoBehaviour
     [SerializeField] private State _targetState;
 
     public State TargetState => _targetState;
-    protected PlayerHealth Target { get; private set; }
+    protected Player Target { get; private set; }
     public bool NeedTransit { get; protected set; }
 
     private void OnEnable()
@@ -21,7 +21,7 @@ public abstract class Transition : MonoBehaviour
         Check();
     }
 
-    public void Init(PlayerHealth target)
+    public void Init(Player target)
     {
         Target = target;
     }

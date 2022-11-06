@@ -4,12 +4,13 @@ using UnityEngine.Pool;
 
 public class EnemyShoot : Attack
 {
-    [SerializeField] protected float Speed;
     [SerializeField] protected Projectile ProjectileTemplate;
+    [SerializeField, Min(0)] protected float Speed;
     [SerializeField, Min(1)] protected float TimeToReleaseProjectile;
-
-    private ObjectPool<Projectile> _pool;
+    [SerializeField] private ProjectileMovement _projectileMovement;
+    
     protected Projectile.TargetType TargetType = Projectile.TargetType.Player;
+    private ObjectPool<Projectile> _pool;
 
     protected void Start()
     {
@@ -17,11 +18,13 @@ public class EnemyShoot : Attack
         var maxSize = (int) (defaultCapacity * 1.5f);
 
         if (defaultCapacity == 0)
-            throw new Exception(gameObject.name + "равен 0");
+            throw new Exception(gameObject.name + ", " + this.ToString() + ", defaultCapacity у ObjectPool<Projectile> равен 0");
         
         _pool = new ObjectPool<Projectile>(() =>
             {
                 var projectile = Instantiate(ProjectileTemplate);
+                projectile.gameObject.AddComponent(_projectileMovement.GetType());
+                
                 projectile.Init(_pool);
                 return projectile;
             },
@@ -29,6 +32,8 @@ public class EnemyShoot : Attack
             projectile => { projectile.gameObject.SetActive(false); },
             projectile => { Destroy(projectile.gameObject); },
             false, defaultCapacity, maxSize);
+        
+        Destroy(_projectileMovement);
     }
 
     protected override void ToAttack(Vector3 targetPosition)
@@ -37,6 +42,6 @@ public class EnemyShoot : Attack
 
         var newBullet = _pool.Get();
         newBullet.transform.SetPositionAndRotation(position, ProjectileTemplate.transform.rotation);
-        newBullet.SetParameters(Damage, Speed, TimeToReleaseProjectile, position, targetPosition, TargetType);
+        newBullet.Launch(Damage, Speed, TimeToReleaseProjectile, position, targetPosition, TargetType);
     }
 }

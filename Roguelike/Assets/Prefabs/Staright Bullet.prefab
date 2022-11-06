@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2167688933432635941}
   - component: {fileID: 2167688933432635928}
   - component: {fileID: -3847217837027666589}
-  - component: {fileID: 7509527219490194017}
   m_Layer: 0
   m_Name: Staright Bullet
   m_TagString: Untagged
@@ -127,19 +126,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be52b418efa3a0740bea4ad44168c074, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetType: 1
-  _bulletMovement: {fileID: 7509527219490194017}
---- !u!114 &7509527219490194017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2167688933432635942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b259106b9d2e9de4e8f1ad1b32bf7b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

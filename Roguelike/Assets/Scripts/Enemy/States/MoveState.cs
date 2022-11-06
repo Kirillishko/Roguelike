@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class MoveState : State
 {
-    [SerializeField] private float _speed;
+    [SerializeField] private EnemyMovement _enemyMovement;
 
-    private void Update()
+    public override void Act()
     {
-        Move(_speed * Time.deltaTime);
-    }
-
-    private void Move(float speed)
-    {
-        transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, speed);
+        _enemyMovement.TryMove();
     }
 }

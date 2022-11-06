@@ -59,7 +59,8 @@ public class PlayerWeapons : MonoBehaviour
     private void TryFire()
     {
         if (_weaponSlots[_currentWeaponSlotIndex].Weapon == null)
-            throw new Exception("Try to fire from empty WeaponSlot");
+            return;
+            //throw new Exception("Try to fire from empty WeaponSlot");
 
         _weaponSlots[_currentWeaponSlotIndex].TryFire();
     }
@@ -67,7 +68,8 @@ public class PlayerWeapons : MonoBehaviour
     private void TryAlternateFire()
     {
         if (_weaponSlots[_currentWeaponSlotIndex].Weapon == null)
-            throw new Exception("Try to alternateFire from empty WeaponSlot");
+            return;
+            //throw new Exception("Try to alternateFire from empty WeaponSlot");
 
         _weaponSlots[_currentWeaponSlotIndex].TryAlternateFire();
     }

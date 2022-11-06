@@ -9,7 +9,7 @@ public abstract class Attack : MonoBehaviour
     protected Transform AttackPosition;
     private float _currentDelay = 0;
     
-    public bool AbleAttack => _currentDelay <= 0;
+    public bool AbleAttack => _currentDelay <= 0 && Logic.IsShooting == false;
     public float DelayBetweenAttacks => _delayBetweenAttacks;
 
     private void Update()
@@ -29,7 +29,7 @@ public abstract class Attack : MonoBehaviour
             return;
         
         ResetDelay();
-        Logic.Shoot(ToAttack, target);
+        StartCoroutine(Logic.Shoot(ToAttack, target));
         
         //ResetDelay();
         //Attack(targetPosition);

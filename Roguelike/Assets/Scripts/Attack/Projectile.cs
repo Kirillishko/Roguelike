@@ -1,18 +1,17 @@
 using System.Collections;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Pool;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private ProjectileMovement _bulletMovement;
+    public Rigidbody Rigidbody { get; private set; }
+    
+    private ProjectileMovement _bulletMovement;
     private TargetType _targetType;
-
-    private Vector3 _startPosition;
-    private Vector3 _targetPosition;
-    private int _damage;
-    private float _speed;
     private ObjectPool<Projectile> _pool;
-
+    private int _damage;
     private bool _isReleased = true;
 
     private void OnTriggerEnter(Collider other)
@@ -22,29 +21,27 @@ public class Projectile : MonoBehaviour
         
         switch (_targetType)
         {
-            case TargetType.Player when other.TryGetComponent(out PlayerHealth player):
+            case TargetType.Player when other.TryGetComponent(out Player player):
                 player.TakeDamage(_damage);
                 break;
             case TargetType.Enemy when other.TryGetComponent(out Enemy enemy):
                 enemy.TakeDamage(_damage);
                 break;
         }
-        
-        
+
         Release();
     }
 
     public void Init(ObjectPool<Projectile> pool)
     {
         _pool = pool;
+        _bulletMovement = GetComponent<ProjectileMovement>();
+        Rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void SetParameters(int damage, float speed, float timeToRelease, Vector3 startPosition, Vector3 targetPosition, TargetType targetType)
+    public void Launch(int damage, float speed, float timeToRelease, Vector3 startPosition, Vector3 targetPosition, TargetType targetType)
     {
         _damage = damage;
-        _startPosition = startPosition;
-        _targetPosition = targetPosition;
-        _speed = speed;
         _targetType = targetType;
 
         _isReleased = false;
@@ -52,7 +49,7 @@ public class Projectile : MonoBehaviour
         StartCoroutine(TryRelease(timeToRelease));
 
         _bulletMovement.Reset();
-        _bulletMovement.Move(this, _startPosition, _targetPosition, _speed * Time.deltaTime);
+        _bulletMovement.Move(this, startPosition, targetPosition, speed);
     }
 
     private void Release()
@@ -69,6 +66,37 @@ public class Projectile : MonoBehaviour
         {
             Release();
         }
+    }
+    
+    public static string SpinWords(string sentence)
+    {
+        StringBuilder words = new StringBuilder(sentence);
+
+        int spaceIndex = -1;
+        int symbolsInWordCount = 0;
+
+        for (int i = 0; i < words.Length; i++)
+        {
+            if (words[i] == ' ')
+            {
+                if (symbolsInWordCount >= 5)
+                {
+                    for (int j = 0; j < symbolsInWordCount; j++)
+                    {
+                        words[spaceIndex + 1 + j] = words[spaceIndex + symbolsInWordCount - j];
+                    }
+
+                    symbolsInWordCount = 0;
+                    spaceIndex = i;
+                }
+            }
+            else
+            {
+                symbolsInWordCount++;
+            }
+        }
+
+        return words.ToString();
     }
     
     public enum TargetType

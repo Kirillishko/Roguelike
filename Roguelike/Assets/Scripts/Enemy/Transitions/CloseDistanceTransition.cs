@@ -7,8 +7,6 @@ public class CloseDistanceTransition : Transition
     protected override void Check()
     {
         if (Vector3.Distance(transform.position, Target.transform.position) < _transitionRange)
-        {
             NeedTransit = true;
-        }
     }
 }

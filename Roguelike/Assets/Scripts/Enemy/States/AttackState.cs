@@ -10,7 +10,7 @@ public class AttackState : State
         _attack.Init(_attackPosition);
     }
 
-    private void Update()
+    public override void Act()
     {
         _attack.TryAttack(Target.transform);
     }

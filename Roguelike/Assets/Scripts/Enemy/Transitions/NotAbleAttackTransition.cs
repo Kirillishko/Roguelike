@@ -1,14 +1,12 @@
 using UnityEngine;
 
-public class AbleAttackTransition : Transition
+public class NotAbleAttackTransition : Transition
 {
     [SerializeField] private Attack _attack;
 
     protected override void Check()
     {
-        if (_attack.AbleAttack)
-        {
+        if (_attack.AbleAttack == false)
             NeedTransit = true;
-        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyStateMachine : MonoBehaviour
 {
     [SerializeField] private State _firstState;
-    private PlayerHealth _target;
+    private Player _target;
 
     public State CurrentState { get; private set; }
 
@@ -23,6 +23,8 @@ public class EnemyStateMachine : MonoBehaviour
 
         if (nextState != null)
             Transit(nextState);
+        
+        CurrentState.Act();
     }
 
     private void Reset(State startState)
