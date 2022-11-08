@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(TextMeshPro))]
 public class DamagePopUp : MonoBehaviour
 {
-     [SerializeField] private float _koef;
+     [SerializeField] private float _size;
      
      private TextMeshPro _text;
      private ObjectPool<DamagePopUp> _pool;
@@ -19,131 +19,170 @@ public class DamagePopUp : MonoBehaviour
           _text = GetComponent<TextMeshPro>();
      }
 
-     public void Init(ObjectPool<DamagePopUp> pool)
+     public void Init(ObjectPool<DamagePopUp> pool, Transform camera, float size)
      {
-          _pool = pool;
-     }
+        _pool = pool;
+        _camera = camera;
+        _size = size;
+    }
 
      private Transform _camera;
      
-     public void Setup(int damage, Transform camera, Vector3 position, float koef)
+     public void Setup(int damage, Vector3 position)
      {
           _text.text = damage.ToString();
-          _camera = camera;
-          _koef = koef;
-
           transform.position = position + Random.onUnitSphere;
-          
-          PopUp();
+          StartCoroutine(PopUp());
      }
 
-     private async void PopUp()
-     {
-          transform.localScale = Vector3.one;
-          CorrectView(1f);
-          await ChangeAlpha(0.3f, true);
-          Move(0.3f, 5f);
-          await Task.Delay(100);
-          await ChangeAlpha(0.2f, false);
-          
-          _pool.Release(this);
-     }
+    IEnumerator coroutine;
 
-     private async Task ChangeAlpha(float duration, bool isIncreasing, float startAlpha = 0f)
-     {
-          var timer = 0f;
-          float alpha;
+    private void Update()
+    {
+        Debug.Log(coroutine != null);
 
-          while (timer < 1f)
-          {
-               timer = Mathf.Min(timer + Time.deltaTime / duration, 1f);
+        if (coroutine != null)
+            Debug.Log(coroutine.Current);
+    }
 
-               if (isIncreasing)
-                    alpha = timer;
-               else
-                    alpha = 1 - timer;
-               
-               _text.alpha = alpha;
+    //private async void PopUp()
+    //{
+    //     transform.localScale = Vector3.one;
+    //     CorrectView(1f);
+    //     await ChangeAlpha(0.3f, true);
+    //     Move(0.3f, 5f);
+    //     await Task.Delay(100);
+    //     await ChangeAlpha(0.2f, false);
 
-               await Task.Yield();
-          }
-     }
-     
-     private async Task Move(float duration, float length)
-     {
-          var timer = 0f;
-          var startPosition = transform.position;
-          var newPosition = startPosition;
+    //     _pool.Release(this);
+    //}
 
-          while (timer < 1f)
-          {
-               timer = Mathf.Min(timer + Time.deltaTime / duration, 1f);
-               
-               newPosition.y = startPosition.y - timer * length;
-               transform.position = newPosition;
+    //private async Task ChangeAlpha(float duration, bool isIncreasing, float startAlpha = 0f)
+    //{
+    //     var timer = 0f;
+    //     float alpha;
 
-               await Task.Yield();
-          }
-     }
+    //     while (timer < 1f)
+    //     {
+    //          timer = Mathf.Min(timer + Time.deltaTime / duration, 1f);
 
-     private async void CorrectView(float duration)
-     {
-          float distance;
-          
-          var timer = 0f;
-          var startScale = Vector3.one;
+    //          if (isIncreasing)
+    //               alpha = timer;
+    //          else
+    //               alpha = 1 - timer;
 
-          while (timer < 1f)
-          {
-               timer = Mathf.Min(timer + Time.deltaTime / duration, 1f);
+    //          _text.alpha = alpha;
 
-               distance = Vector3.Distance(transform.position, _camera.position);
-               transform.localScale = Vector3.one * (distance * _koef);
-               transform.LookAt(2 * transform.position - _camera.position);
-               
-               await Task.Yield();
-          }
-     }
-     
-     // private IEnumerator PopUp()
-     // {
-     //      yield return StartCoroutine(ChangeAlpha(0.5f, true));
-     //      StartCoroutine(ChangeAlpha(0.5f, false));
-     //      yield return StartCoroutine(Move(0.5f, 5f));
-     //      
-     //      _pool.Release(this);
-     // }
-     //
-     // private IEnumerator ChangeAlpha(float duration, bool isIncreasing, float startAlpha = 0f)
-     // {
-     //      var timer = 0f;
-     //      var reverser = Convert.ToInt32(isIncreasing);
-     //
-     //      while (timer < 1f)
-     //      {
-     //           timer = Mathf.Min(timer + Time.deltaTime / duration, 1f);
-     //           _text.alpha = reverser - timer;
-     //
-     //           Debug.Log("ChangeAlpha");
-     //           yield return null;
-     //      }
-     // }
-     //
-     // private IEnumerator Move(float duration, float length)
-     // {
-     //      var timer = 0f;
-     //      var startPosition = transform.position;
-     //      var newPosition = startPosition;
-     //
-     //      while (timer < 1f)
-     //      {
-     //           Debug.Log("Move");
-     //           timer = Mathf.Min(timer + Time.deltaTime / duration, 1f);
-     //           
-     //           newPosition.y = startPosition.y - timer * length;
-     //           transform.position = newPosition;
-     //
-     //           yield return null;
-     //      }
-     // }
+    //          await Task.Yield();
+    //     }
+    //}
+
+    //private async Task Move(float duration, float length)
+    //{
+    //     var timer = 0f;
+    //     var startPosition = transform.position;
+    //     var newPosition = startPosition;
+
+    //     while (timer < 1f)
+    //     {
+    //          timer = Mathf.Min(timer + Time.deltaTime / duration, 1f);
+
+    //          newPosition.y = startPosition.y - timer * length;
+    //          transform.position = newPosition;
+
+    //          await Task.Yield();
+    //     }
+    //}
+
+    //private async void CorrectView(float duration)
+    //{
+    //     float distance;
+
+    //     var timer = 0f;
+    //     var startScale = Vector3.one;
+
+    //     while (timer < 1f)
+    //     {
+    //          timer = Mathf.Min(timer + Time.deltaTime / duration, 1f);
+
+    //          distance = Vector3.Distance(transform.position, _camera.position);
+    //          transform.localScale = Vector3.one * (distance * _size);
+    //          transform.LookAt(2 * transform.position - _camera.position);
+
+    //          await Task.Yield();
+    //     }
+    //}
+
+    private IEnumerator PopUp()
+    {
+        float increasingAlphaTime = 0.3f;
+        float moveTime = 0.3f;
+        float waitTime = 0.1f;
+        float decreasingAlphaTime = 0.2f;
+        float view = increasingAlphaTime + moveTime + waitTime + decreasingAlphaTime;
+
+        //StartCoroutine(CorrectView(view));
+        coroutine = CorrectView(view);
+        StartCoroutine(coroutine);
+
+        yield return StartCoroutine(ChangeAlpha(increasingAlphaTime, true));
+        StartCoroutine(Move(moveTime, 5f));
+        yield return new WaitForSecondsRealtime(waitTime);
+        yield return StartCoroutine(ChangeAlpha(decreasingAlphaTime, false));
+
+        _pool.Release(this);
+    }
+
+    private IEnumerator ChangeAlpha(float duration, bool isIncreasing)
+    {
+        var timer = 0f;
+        float alpha;
+
+        while (timer < 1f)
+        {
+            timer = Mathf.Min(timer + Time.deltaTime / duration, 1f);
+
+            if (isIncreasing)
+                alpha = timer;
+            else
+                alpha = 1 - timer;
+
+            _text.alpha = alpha;
+            yield return null;
+        }
+    }
+
+    private IEnumerator Move(float duration, float length)
+    {
+        var timer = 0f;
+        var startPosition = transform.position;
+        var newPosition = startPosition;
+
+        while (timer < 1f)
+        {
+            timer = Mathf.Min(timer + Time.deltaTime / duration, 1f);
+
+            newPosition.y = startPosition.y - timer * length;
+            transform.position = newPosition;
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator CorrectView(float duration)
+    {
+        float distance;
+        float timer = 0f;
+
+        while (timer < 1f)
+        {
+            timer = Mathf.Min(timer + Time.deltaTime / duration, 1f);
+
+            distance = Vector3.Distance(transform.position, _camera.position);
+            transform.localScale = Vector3.one * (distance * _size);
+            transform.LookAt(2 * transform.position - _camera.position);
+
+            yield return null;
+        }
+    }
 }

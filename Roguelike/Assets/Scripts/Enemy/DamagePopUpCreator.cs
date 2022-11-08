@@ -3,7 +3,7 @@ using Random = UnityEngine.Random;
 
 public class DamagePopUpCreator : MonoBehaviour
 {
-    [SerializeField] private float _koef;
+    [SerializeField] private float _size;
     [SerializeField] private DamagePopUp _template;
     [SerializeField, Min(1)] private float _timeToRelease;
     private Camera _camera;
@@ -19,7 +19,7 @@ public class DamagePopUpCreator : MonoBehaviour
         _pool = new UnityEngine.Pool.ObjectPool<DamagePopUp>(() =>
             {
                 var popUp = Instantiate(_template, transform);
-                popUp.Init(_pool);
+                popUp.Init(_pool, _camera.transform, _size);
                 return popUp;
             },
             popUp => { popUp.gameObject.SetActive(true); },
@@ -36,14 +36,14 @@ public class DamagePopUpCreator : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > duration)
         {
-            Create(Random.Range(0, 101));
+            Create(Random.Range(0, 101), transform.position);
             timer = 0f;
         }
     }
 
-    private void Create(int damage)
+    private void Create(int damage, Vector3 position)
     {
         var popUp = _pool.Get();
-        popUp.Setup(damage, _camera.transform, transform.position, _koef);
+        popUp.Setup(damage, position);
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 10701.91, g: 8569.395, b: 7730.207, a: 1}
+  m_IndirectSpecularColor: {r: 10693.783, g: 8569.26, b: 7735.492, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78e27b8ed4f8864988998c4698cebe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _koef: 0
+  _size: 0
   _template: {fileID: 1969544145606481506, guid: f8065def9e143f3418ae29ea9b82c14b,
     type: 3}
   _timeToRelease: 5
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78e27b8ed4f8864988998c4698cebe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _koef: 0
+  _size: 0
   _template: {fileID: 1969544145606481506, guid: f8065def9e143f3418ae29ea9b82c14b,
     type: 3}
   _timeToRelease: 5
@@ -7009,7 +7009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78e27b8ed4f8864988998c4698cebe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _koef: 0
+  _size: 0
   _template: {fileID: 1969544145606481506, guid: f8065def9e143f3418ae29ea9b82c14b,
     type: 3}
   _timeToRelease: 5
@@ -13094,7 +13094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotsCount: 3
-  _delay: 0
+  _delay: 0.1
 --- !u!4 &863011940
 Transform:
   m_ObjectHideFlags: 0
@@ -16133,7 +16133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78e27b8ed4f8864988998c4698cebe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _koef: 0
+  _size: 0
   _template: {fileID: 1969544145606481506, guid: f8065def9e143f3418ae29ea9b82c14b,
     type: 3}
   _timeToRelease: 5
@@ -17299,7 +17299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2029645603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17312,11 +17312,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78e27b8ed4f8864988998c4698cebe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _koef: 0
+  _size: 0.025
   _template: {fileID: 1969544145606481506, guid: f8065def9e143f3418ae29ea9b82c14b,
     type: 3}
   _timeToRelease: 5
-  duration: 0.5
+  duration: 4
 --- !u!4 &2029645604
 Transform:
   m_ObjectHideFlags: 0
@@ -17573,7 +17573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotsCount: 5
-  _delayBetweenShots: 0
+  _delayBetweenShots: 0.01
   _minRadius: 1
   _maxRadius: 2
 --- !u!114 &2075368638

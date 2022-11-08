@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public Action Die;
+
     [SerializeField] private int _health;
     [SerializeField] private int _armor;
     [SerializeField] private Player _target;
@@ -14,6 +17,7 @@ public class Enemy : MonoBehaviour
 
         if (_health <= 0)
         {
+            Die?.Invoke();
             Destroy(gameObject);
         }
     }
