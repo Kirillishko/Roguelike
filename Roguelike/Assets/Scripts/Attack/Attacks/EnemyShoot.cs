@@ -24,7 +24,6 @@ public class EnemyShoot : Attack
             {
                 var projectile = Instantiate(ProjectileTemplate);
                 projectile.gameObject.AddComponent(_projectileMovement.GetType());
-                
                 projectile.Init(_pool);
                 return projectile;
             },

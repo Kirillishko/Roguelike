@@ -67,38 +67,7 @@ public class Projectile : MonoBehaviour
             Release();
         }
     }
-    
-    public static string SpinWords(string sentence)
-    {
-        StringBuilder words = new StringBuilder(sentence);
 
-        int spaceIndex = -1;
-        int symbolsInWordCount = 0;
-
-        for (int i = 0; i < words.Length; i++)
-        {
-            if (words[i] == ' ')
-            {
-                if (symbolsInWordCount >= 5)
-                {
-                    for (int j = 0; j < symbolsInWordCount; j++)
-                    {
-                        words[spaceIndex + 1 + j] = words[spaceIndex + symbolsInWordCount - j];
-                    }
-
-                    symbolsInWordCount = 0;
-                    spaceIndex = i;
-                }
-            }
-            else
-            {
-                symbolsInWordCount++;
-            }
-        }
-
-        return words.ToString();
-    }
-    
     public enum TargetType
     {
         Player,

@@ -1,17 +1,35 @@
+using System;
 using UnityEngine;
 
-//[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(Enemy))]
 public class EnemyStateMachine : MonoBehaviour
 {
     [SerializeField] private State _firstState;
+
+    private Enemy _enemy;
     private Player _target;
 
     public State CurrentState { get; private set; }
 
+    private void Awake()
+    {
+        _enemy = GetComponent<Enemy>();
+    }
+
     private void Start()
     {
-        _target = GetComponent<Enemy>().Target;
+        _target = _enemy.Target;
         Reset(_firstState);
+    }
+
+    private void OnEnable()
+    {
+        _enemy.Die += OnDie;
+    }
+
+    private void OnDisable()
+    {
+        _enemy.Die -= OnDie;
     }
 
     private void Update()
@@ -44,5 +62,10 @@ public class EnemyStateMachine : MonoBehaviour
 
         if (CurrentState != null)
             CurrentState.Enter(_target);
+    }
+
+    private void OnDie()
+    {
+        enabled = false;
     }
 }

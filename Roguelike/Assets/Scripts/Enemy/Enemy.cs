@@ -4,6 +4,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Action Die;
+    public Action<int, Vector3> Damaged;
 
     [SerializeField] private int _health;
     [SerializeField] private int _armor;
@@ -11,14 +12,20 @@ public class Enemy : MonoBehaviour
 
     public Player Target => _target;
 
+    public void Init(Player player) => _target = player;
+
     public void TakeDamage(int damage)
     {
-        _health -= damage * (100 - _armor);
+        if (_health <= 0)
+            return;
+        
+        int realDamage = damage - _armor;
+        realDamage = Mathf.Max(realDamage, 0);
+        
+        _health -= realDamage;
+        Damaged?.Invoke(damage, transform.position);
 
         if (_health <= 0)
-        {
             Die?.Invoke();
-            Destroy(gameObject);
-        }
     }
 }

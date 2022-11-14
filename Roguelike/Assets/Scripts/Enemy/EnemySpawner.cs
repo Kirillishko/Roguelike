@@ -1,20 +1,21 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private Player _player;
     [SerializeField] private Enemy[] _enemies;
     [SerializeField] private Transform[] _spawnPoints;
-    private int _maxEnemiesSpawned;
-    private int _maxEnemiesAtTime;
-    private int _enemiesSpawned;
-    private int _currentEnemiesAtTime;
-    private float _timeBetweenSpawn;
-    private float _currentTime;
-
-    private bool _isSpawning;
+    [SerializeField] private DamagePopUpCreator _damagePopUpCreator;
+    
+    private int _maxEnemiesSpawned = 15;
+    private int _maxEnemiesAtTime = 5;
+    private int _enemiesSpawned = 0;
+    private int _currentEnemiesAtTime = 0;
+    private float _timeBetweenSpawn = 5;
+    private float _currentTime = 0;
+    private bool _isSpawning = true;
+    
+    
 
     private void Update()
     {
@@ -42,7 +43,9 @@ public class EnemySpawner : MonoBehaviour
         var enemy = _enemies[Random.Range(0, _enemies.Length)];
 
         enemy = Instantiate(enemy, spawnPoint);
+        enemy.Init(_player);
         enemy.Die += OnDie;
+        enemy.Damaged += _damagePopUpCreator.Create;
     }
 
     private void OnDie()
